@@ -1,14 +1,15 @@
 import config from 'config';
 import {authHeader, handleResponse} from '../_helpers';
+import {userModel} from './user.model';
 
 export const userService = {
   login,
   logout,
   register,
   getAll,
-  getById,
-  update,
-  delete: _delete
+  getById
+  /* todo update,
+  delete: _delete, */
 };
 
 function _getDefaultHeaders() {
@@ -22,7 +23,7 @@ function _getAuthHeaders() {
 function login(username, password) {
   const requestOptions = {
     method: 'POST',
-    headers: _getDefaultHeaders(),
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({username, password})
   };
 
@@ -30,25 +31,16 @@ function login(username, password) {
     .then(handleResponse)
     .then(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem('user', JSON.stringify(user));
-
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      userModel.currentUserSubject.next(user);
       return user;
     });
 }
 
 function logout() {
   // remove user from local storage to log user out
-  localStorage.removeItem('user');
-}
-
-function getAll() {
-  const requestOptions = {method: 'GET', headers: _getAuthHeaders()};
-  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
-}
-
-function getById(id) {
-  const requestOptions = {method: 'GET', headers: _getAuthHeaders()};
-  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+  localStorage.removeItem('currentUser');
+  userModel.currentUserSubject.next(null);
 }
 
 function register(user) {
@@ -61,7 +53,17 @@ function register(user) {
   return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
 }
 
-function update(user) {
+function getAll() {
+  const requestOptions = {method: 'GET', headers: _getAuthHeaders()};
+  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+}
+
+function getById(id) {
+  const requestOptions = {method: 'GET', headers: _getAuthHeaders()};
+  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+}
+
+/* todo function update(user) {
   const requestOptions = {
     method: 'PUT',
     headers: _getAuthHeaders(),
@@ -71,7 +73,6 @@ function update(user) {
   return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
   const requestOptions = {
     method: 'DELETE',
@@ -79,4 +80,4 @@ function _delete(id) {
   };
 
   return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
+}*/

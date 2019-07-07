@@ -1,19 +1,19 @@
 import React from 'react';
 
-import {authenticationService, userService} from '@/_services';
+import {userModel, userService} from '@/_services';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentUser: authenticationService.currentUserValue,
+      currentUser: userModel.currentUserValue,
       userFromApi: null
     };
   }
 
   componentDidMount() {
-    const currentUser = authenticationService.currentUserValue;
+    const currentUser = userModel.currentUserValue;
 
     this.setState({
       currentUser: currentUser

@@ -3,7 +3,7 @@ import {Link, Route, Router} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {history, Role} from '../_helpers';
-import {authenticationService} from '@/_services';
+import {userModel, userService} from '@/_services';
 import {alertActions} from '../_actions';
 import {PrivateRoute} from '../_components';
 import {HomePage} from '../HomePage';
@@ -28,12 +28,12 @@ class App extends React.Component {
   }
 
   static logout() {
-    authenticationService.logout();
+    userService.logout();
     history.push('/login');
   }
 
   componentDidMount() {
-    authenticationService.currentUser.subscribe(x => this.setState({
+    userModel.currentUser.subscribe(x => this.setState({
       currentUser: x,
       isAdmin: x && x.role === Role.Admin
     }));

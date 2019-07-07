@@ -1,11 +1,11 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 
-import {authenticationService} from '@/_services';
+import {userModel} from '@/_services';
 
 export const PrivateRoute = ({component: Component, roles, ...rest}) => (
   <Route {...rest} render={props => {
-    const currentUser = authenticationService.currentUserValue;
+    const currentUser = userModel.currentUserValue;
     if (!currentUser) {
       // not logged in so redirect to login page with the return url
       return <Redirect

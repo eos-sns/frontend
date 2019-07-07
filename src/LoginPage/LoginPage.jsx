@@ -1,5 +1,5 @@
 import React from 'react';
-import {authenticationService} from '@/_services';
+import {userModel, userService} from '@/_services';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
 
@@ -8,7 +8,7 @@ class LoginPage extends React.Component {
     super(props);
 
     // redirect to home if already logged in
-    if (authenticationService.currentUserValue) {
+    if (userModel.currentUserValue) {
       this.props.history.push('/');
     }
   }
@@ -28,8 +28,8 @@ class LoginPage extends React.Component {
           })}
           onSubmit={({username, password}, {setStatus, setSubmitting}) => {
             setStatus();
-            authenticationService.login(username, password).then(
-              user => {
+            userService.login(username, password).then(
+              () => {
                 const {from} = this.props.location.state || {from: {pathname: "/"}};
                 this.props.history.push(from);
               },
