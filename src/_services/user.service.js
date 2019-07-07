@@ -2,13 +2,13 @@ import config from 'config';
 import {authHeader, handleResponse} from '../_helpers';
 
 export const userService = {
-    login,
-    logout,
-    register,
-    getAll,
-    getById,
-    update,
-    delete: _delete
+  login,
+  logout,
+  register,
+  getAll,
+  getById,
+  update,
+  delete: _delete
 };
 
 function _getDefaultHeaders() {
@@ -20,25 +20,25 @@ function _getAuthHeaders() {
 }
 
 function login(username, password) {
-    const requestOptions = {
-        method: 'POST',
-      headers: _getDefaultHeaders(),
-        body: JSON.stringify({ username, password })
-    };
+  const requestOptions = {
+    method: 'POST',
+    headers: _getDefaultHeaders(),
+    body: JSON.stringify({username, password})
+  };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+  return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    .then(handleResponse)
+    .then(user => {
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.setItem('user', JSON.stringify(user));
 
-            return user;
-        });
+      return user;
+    });
 }
 
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
+  // remove user from local storage to log user out
+  localStorage.removeItem('user');
 }
 
 function getAll() {
@@ -52,31 +52,31 @@ function getById(id) {
 }
 
 function register(user) {
-    const requestOptions = {
-        method: 'POST',
-      headers: _getAuthHeaders(),
-        body: JSON.stringify(user)
-    };
+  const requestOptions = {
+    method: 'POST',
+    headers: _getAuthHeaders(),
+    body: JSON.stringify(user)
+  };
 
-    return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-      headers: _getAuthHeaders(),
-        body: JSON.stringify(user)
-    };
+  const requestOptions = {
+    method: 'PUT',
+    headers: _getAuthHeaders(),
+    body: JSON.stringify(user)
+  };
 
   return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-      headers: _getAuthHeaders()
-    };
+  const requestOptions = {
+    method: 'DELETE',
+    headers: _getAuthHeaders()
+  };
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }

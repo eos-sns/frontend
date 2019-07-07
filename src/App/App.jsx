@@ -12,20 +12,20 @@ import {LoginPage} from '../LoginPage';
 import {RegisterPage} from '../RegisterPage';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        const { dispatch } = this.props;
-        history.listen((location, action) => {
-            // clear alert on location change
-            dispatch(alertActions.clear());
-        });
+    const {dispatch} = this.props;
+    history.listen((location, action) => {
+      // clear alert on location change
+      dispatch(alertActions.clear());
+    });
 
-      this.state = {
-        currentUser: null,
-        isAdmin: false
-      };
-    }
+    this.state = {
+      currentUser: null,
+      isAdmin: false
+    };
+  }
 
   static logout() {
     authenticationService.logout();
@@ -39,52 +39,52 @@ class App extends React.Component {
     }));
   }
 
-    render() {
-      const {currentUser, isAdmin} = this.state;
-      const {alert} = this.props;
-        return (
-          <Router history={history}>
-            <div>
-              {currentUser &&
-              <nav className="navbar navbar-expand navbar-dark bg-dark">
-                <div className="navbar-nav">
-                  <Link to="/" className="nav-item nav-link">Home</Link>
-                  {isAdmin &&
-                  <Link to="/admin" className="nav-item nav-link">Admin</Link>}
-                  <a onClick={App.logout}
-                     className="nav-item nav-link">Logout</a>
-                </div>
-              </nav>
-              }
-              <div className="jumbotron">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-sm-8 col-sm-offset-2">
-                      {alert.message &&
-                      <div
-                        className={`alert ${alert.type}`}>{alert.message}</div>
-                      }
-                      <PrivateRoute exact path="/" component={HomePage}/>
-                      <PrivateRoute path="/admin" roles={[Role.Admin]}
-                                    component={AdminPage}/>
-                      <Route path="/login" component={LoginPage}/>
-                      <Route path="/register" component={RegisterPage}/>
-                    </div>
-                  </div>
+  render() {
+    const {currentUser, isAdmin} = this.state;
+    const {alert} = this.props;
+    return (
+      <Router history={history}>
+        <div>
+          {currentUser &&
+          <nav className="navbar navbar-expand navbar-dark bg-dark">
+            <div className="navbar-nav">
+              <Link to="/" className="nav-item nav-link">Home</Link>
+              {isAdmin &&
+              <Link to="/admin" className="nav-item nav-link">Admin</Link>}
+              <a onClick={App.logout}
+                 className="nav-item nav-link">Logout</a>
+            </div>
+          </nav>
+          }
+          <div className="jumbotron">
+            <div className="container">
+              <div className="row">
+                <div className="col-sm-8 col-sm-offset-2">
+                  {alert.message &&
+                  <div
+                    className={`alert ${alert.type}`}>{alert.message}</div>
+                  }
+                  <PrivateRoute exact path="/" component={HomePage}/>
+                  <PrivateRoute path="/admin" roles={[Role.Admin]}
+                                component={AdminPage}/>
+                  <Route path="/login" component={LoginPage}/>
+                  <Route path="/register" component={RegisterPage}/>
                 </div>
               </div>
             </div>
-          </Router>
-        );
-    }
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
 function mapStateToProps(state) {
-    const { alert } = state;
-    return {
-        alert
-    };
+  const {alert} = state;
+  return {
+    alert
+  };
 }
 
 const connectedApp = connect(mapStateToProps)(App);
-export { connectedApp as App }; 
+export {connectedApp as App};
