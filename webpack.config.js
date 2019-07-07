@@ -1,9 +1,13 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     mode: 'development',
     resolve: {
-        extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        '@': path.resolve(__dirname, 'src/'),
+      }
     },
     module: {
         rules: [
@@ -25,4 +29,4 @@ module.exports = {
             apiUrl: 'http://localhost:4000'
         })
     }
-}
+};

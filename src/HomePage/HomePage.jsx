@@ -1,57 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import { userActions } from '../_actions';
+import {authenticationService, userService} from '@/_services';
 
 class HomePage extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(userActions.getAll());
-    }
+  constructor(props) {
+    super(props);
 
-    handleDeleteUser(id) {
-        return (e) => this.props.dispatch(userActions.delete(id));
-    }
-
-    render() {
-        const { user, users } = this.props;
-        return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {user.firstName}!</h1>
-                <p>You're logged in with React!!</p>
-                <h3>All registered users:</h3>
-                {users.loading && <em>Loading users...</em>}
-                {users.error && <span className="text-danger">ERROR: {users.error}</span>}
-                {users.items &&
-                    <ul>
-                        {users.items.map((user, index) =>
-                            <li key={user.id}>
-                                {user.firstName + ' ' + user.lastName}
-                                {
-                                    user.deleting ? <em> - Deleting...</em>
-                                    : user.deleteError ? <span className="text-danger"> - ERROR: {user.deleteError}</span>
-                                    : <span> - <a onClick={this.handleDeleteUser(user.id)}>Delete</a></span>
-                                }
-                            </li>
-                        )}
-                    </ul>
-                }
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
-            </div>
-        );
-    }
-}
-
-function mapStateToProps(state) {
-    const { users, authentication } = state;
-    const { user } = authentication;
-    return {
-        user,
-        users
+    this.state = {
+      currentUser: authenticationService.currentUserValue,
+      userFromApi: null
     };
+  }
+
+  componentDidMount() {
+    const currentUser = authenticationService.currentUserValue;
+
+    this.setState({
+      currentUser: currentUser
+    });
+
+    userService.getById(currentUser._id).then(userFromApi => this.setState({userFromApi}));
+  }
+
+  render() {
+    const {currentUser, userFromApi} = this.state;
+    return (
+      <div>
+        <h1>Home</h1>
+        <p>Your role is: <strong>{currentUser.role}</strong>.</p>
+        <div>
+          Current user from secure api end point:
+          {userFromApi &&
+          <ul>
+            <li>{userFromApi.firstName} {userFromApi.lastName}</li>
+          </ul>
+          }
+        </div>
+      </div>
+    );
+  }
 }
 
-const connectedHomePage = connect(mapStateToProps)(HomePage);
-export { connectedHomePage as HomePage };
+export {HomePage};
