@@ -3,7 +3,7 @@ import React from 'react';
 import {userService} from '@/_services';
 import Switch from "react-switch";
 import ReactTable from 'react-table';
-
+import Checkbox from 'react-simple-checkbox';
 
 class AdminPage extends React.Component {
   constructor(props) {
@@ -32,15 +32,17 @@ class AdminPage extends React.Component {
     }, {
       Header: 'Verified ?',
       accessor: 'verified',
-      Cell: x => <Switch
-        onChange={this.toggleVerifiedSwitch.bind(this, x.index)}
+      Cell: x => <Checkbox
+        className={"centered"}  // todo
+        size={2}
+        tickSize={3}
         checked={this.state.users[x.index].verified}
-        disabled={this.state.submitting}
       />
     }, {
       Header: 'Granted ?',
       accessor: 'granted',
       Cell: x => <Switch
+        className={"centered"}  // todo
         onChange={this.toggleGrantedSwitch.bind(this, x.index)}
         checked={this.state.users[x.index].granted}
         disabled={this.state.submitting}
@@ -49,6 +51,7 @@ class AdminPage extends React.Component {
       Header: 'Blocked ?',
       accessor: 'blocked',
       Cell: x => <Switch
+        className={"centered"}  // todo
         onChange={this.toggleBlockedSwitch.bind(this, x.index)}
         checked={this.state.users[x.index].blocked}
         disabled={this.state.submitting}
@@ -57,12 +60,11 @@ class AdminPage extends React.Component {
   }
 
   static updateBackendUser(user) {
-    // todo set status loading ...
-    return userService.update(user);
-  }
+    this.setState({
+      submitting: true
+    });
 
-  toggleVerifiedSwitch(switchUser, newStatus) {
-    this.setUserProperty(switchUser, 'verified', newStatus);
+    return userService.update(user);
   }
 
   toggleGrantedSwitch(switchUser, newStatus) {
@@ -74,10 +76,6 @@ class AdminPage extends React.Component {
   }
 
   setUserProperty(userIndex, property, value) {
-    this.setState({
-      submitting: true
-    });
-
     let users = [...this.state.users];  // get status
     let user = users[userIndex];
     const oldProperty = user[property];
