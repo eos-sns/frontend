@@ -1,34 +1,52 @@
 import React from 'react';
 
-import {userService} from '@/_services';
+import {searchService} from '@/_services';
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import * as Yup from "yup";
 
 class DownloadPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  // todo validationSchema
   render() {
     return (
       <div>
         <Formik
           initialValues={{
-            username: '',
-            password: ''
+            alphaEsc: '',
+            alphaStar: '',
+            fEsc10: '',
+            fStar10: '',
+            lX: '',
+            mTurn: '',
+            tStar: '',
+            sigma8: '',
+            xRaySpecIndex: ''
           }}
-          validationSchema={Yup.object().shape({
-            username: Yup.string().required('Username is required'),
-            password: Yup.string().required('Password is required')
-          })}
-          onSubmit={({username, password}, {setStatus, setSubmitting}) => {
+          onSubmit={
+            ({alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn, tStar, sigma8, xRaySpecIndex},
+             {setStatus, setSubmitting}) => {
             setStatus();
-            userService.login(username, password).then(
+              const searchParams = {
+                alphaEsc,
+                alphaStar,
+                fEsc10,
+                fStar10,
+                lX,
+                mTurn,
+                tStar,
+                sigma8,
+                xRaySpecIndex
+              };
+              searchService.postSearch(...searchParams).then(
               () => {
-                const {from} = this.props.location.state || {from: {pathname: "/"}};
-                this.props.history.push(from);
+                console.log('success');
+                // todo show success
               },
               error => {
+                console.log('error');
+                // todo show error
                 setSubmitting(false);
                 setStatus(error);
               }
@@ -37,22 +55,71 @@ class DownloadPage extends React.Component {
           render={({errors, status, touched, isSubmitting}) => (
             <Form>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <Field name="username" type="text"
-                       className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')}/>
-                <ErrorMessage name="username" component="div"
+                <label htmlFor="alphaEsc">alphaEsc</label>
+                <Field name="alphaEsc" type="text"
+                       className={'form-control' + (errors.alphaEsc && touched.alphaEsc ? ' is-invalid' : '')}/>
+                <ErrorMessage name="alphaEsc" component="div"
                               className="invalid-feedback"/>
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Field name="password" type="password"
-                       className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')}/>
-                <ErrorMessage name="password" component="div"
+                <label htmlFor="alphaStar">alphaStar</label>
+                <Field name="alphaStar" type="text"
+                       className={'form-control' + (errors.alphaStar && touched.alphaStar ? ' is-invalid' : '')}/>
+                <ErrorMessage name="alphaStar" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="fEsc10">fEsc10</label>
+                <Field name="fEsc10" type="text"
+                       className={'form-control' + (errors.fEsc10 && touched.fEsc10 ? ' is-invalid' : '')}/>
+                <ErrorMessage name="fEsc10" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="fStar10">fStar10</label>
+                <Field name="fStar10" type="text"
+                       className={'form-control' + (errors.fStar10 && touched.fStar10 ? ' is-invalid' : '')}/>
+                <ErrorMessage name="fStar10" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="lX">lX</label>
+                <Field name="lX" type="text"
+                       className={'form-control' + (errors.lX && touched.lX ? ' is-invalid' : '')}/>
+                <ErrorMessage name="lX" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="mTurn">mTurn</label>
+                <Field name="mTurn" type="text"
+                       className={'form-control' + (errors.mTurn && touched.mTurn ? ' is-invalid' : '')}/>
+                <ErrorMessage name="mTurn" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="tStar">tStar</label>
+                <Field name="tStar" type="text"
+                       className={'form-control' + (errors.tStar && touched.tStar ? ' is-invalid' : '')}/>
+                <ErrorMessage name="tStar" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="sigma8">sigma8</label>
+                <Field name="sigma8" type="text"
+                       className={'form-control' + (errors.sigma8 && touched.sigma8 ? ' is-invalid' : '')}/>
+                <ErrorMessage name="sigma8" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="xRaySpecIndex">xRaySpecIndex</label>
+                <Field name="xRaySpecIndex" type="text"
+                       className={'form-control' + (errors.xRaySpecIndex && touched.xRaySpecIndex ? ' is-invalid' : '')}/>
+                <ErrorMessage name="xRaySpecIndex" component="div"
                               className="invalid-feedback"/>
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary"
-                        disabled={isSubmitting}>Login
+                        disabled={isSubmitting}>Search
                 </button>
                 {isSubmitting &&
                 <img
