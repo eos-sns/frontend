@@ -1,26 +1,9 @@
 import React from 'react';
-
-import {userModel, userService} from '@/_services';
 import Link from "react-router-dom/es/Link";
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentUser: userModel.currentUserValue,
-      userFromApi: null
-    };
-  }
-
-  componentDidMount() {
-    const currentUser = userModel.currentUserValue;
-
-    this.setState({
-      currentUser: currentUser
-    });
-
-    userService.getById(currentUser._id).then(userFromApi => this.setState({userFromApi}));
   }
 
   render() {

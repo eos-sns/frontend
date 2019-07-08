@@ -53,6 +53,8 @@ class App extends React.Component {
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <div className="navbar-nav">
               <Link to="/" className="nav-item nav-link">Home</Link>
+              <Link to="/download" className="nav-item nav-link">Download</Link>
+              <Link to="/jupyter" className="nav-item nav-link">Jupyter</Link>
               {isAdmin &&
               <Link to="/admin" className="nav-item nav-link">Admin</Link>}
               <a onClick={App.logout}

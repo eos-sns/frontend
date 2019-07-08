@@ -64,6 +64,8 @@ class AdminPage extends React.Component {
       submitting: true
     });
 
+    console.log('updating...');
+    console.log(user);
     return userService.update(user);
   }
 
@@ -85,12 +87,13 @@ class AdminPage extends React.Component {
       .catch((x) => {
         user[property] = oldProperty;  // undo-set
         alert(x);
-      }).finally(() => {
-      this.setState({
-        users: users,
-        submitting: false
       })
-    })
+      .finally(() => {
+        this.setState({
+          users: users,
+          submitting: false
+        })
+      })
   }
 
   componentDidMount() {
