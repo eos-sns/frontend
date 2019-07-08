@@ -2,6 +2,7 @@ import React from 'react';
 import {userModel, userService} from '@/_services';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
+import Link from "react-router-dom/es/Link";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -70,6 +71,9 @@ class LoginPage extends React.Component {
             </Form>
           )}
         />
+        <div>
+          New user? <Link to="/register">Register</Link>
+        </div>
       </div>
     )
   }

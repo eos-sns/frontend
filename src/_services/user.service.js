@@ -7,9 +7,9 @@ export const userService = {
   logout,
   register,
   getAll,
-  getById
-  /* todo update,
-  delete: _delete, */
+  getById,
+  update,
+  /* todo delete: _delete, */
 };
 
 function _getDefaultHeaders() {
@@ -63,7 +63,7 @@ function getById(id) {
   return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
 
-/* todo function update(user) {
+function update(user) {
   const requestOptions = {
     method: 'PUT',
     headers: _getAuthHeaders(),
@@ -73,7 +73,7 @@ function getById(id) {
   return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
-function _delete(id) {
+/*function _delete(id) {
   const requestOptions = {
     method: 'DELETE',
     headers: _getAuthHeaders()

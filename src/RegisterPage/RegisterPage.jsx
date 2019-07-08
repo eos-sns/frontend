@@ -2,6 +2,7 @@ import React from 'react';
 import {userService} from '@/_services';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
+import Link from "react-router-dom/es/Link";
 
 class RegisterPage extends React.Component {
   constructor(props) {
@@ -12,7 +13,6 @@ class RegisterPage extends React.Component {
     return (
       <div className="col-md-6 col-md-offset-3">
         <h2>Register</h2>
-        <h2>Login</h2>
         <Formik
           initialValues={{
             firstName: '',
@@ -48,14 +48,14 @@ class RegisterPage extends React.Component {
           render={({errors, status, touched, registering}) => (
             <Form>
               <div className="form-group">
-                <label htmlFor="firstName">firstName</label>
+                <label htmlFor="firstName">First name</label>
                 <Field name="firstName" type="text"
                        className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')}/>
                 <ErrorMessage name="firstName" component="div"
                               className="invalid-feedback"/>
               </div>
               <div className="form-group">
-                <label htmlFor="lastName">lastName</label>
+                <label htmlFor="lastName">Last name</label>
                 <Field name="lastName" type="text"
                        className={'form-control' + (errors.lastName && touched.lastName ? ' is-invalid' : '')}/>
                 <ErrorMessage name="lastName" component="div"
@@ -77,7 +77,7 @@ class RegisterPage extends React.Component {
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary"
-                        disabled={registering}>Login
+                        disabled={registering}>Register
                 </button>
                 {registering &&
                 <img
@@ -90,6 +90,9 @@ class RegisterPage extends React.Component {
             </Form>
           )}
         />
+        <div>
+          Already a user? <Link to="/login">Login</Link>
+        </div>
       </div>
     );
   }

@@ -16,9 +16,8 @@ class App extends React.Component {
     super(props);
 
     const {dispatch} = this.props;
-    history.listen((location, action) => {
-      // clear alert on location change
-      dispatch(alertActions.clear());
+    history.listen(() => {
+      dispatch(alertActions.clear()); // clear alert on location change
     });
 
     this.state = {
@@ -59,17 +58,15 @@ class App extends React.Component {
           <div className="jumbotron">
             <div className="container">
               <div className="row">
-                <div className="col-sm-8 col-sm-offset-2">
-                  {alert.message &&
-                  <div
-                    className={`alert ${alert.type}`}>{alert.message}</div>
-                  }
-                  <PrivateRoute exact path="/" component={HomePage}/>
-                  <PrivateRoute path="/admin" roles={[Role.Admin]}
-                                component={AdminPage}/>
-                  <Route path="/login" component={LoginPage}/>
-                  <Route path="/register" component={RegisterPage}/>
-                </div>
+                {alert.message &&
+                <div
+                  className={`alert ${alert.type}`}>{alert.message}</div>
+                }
+                <PrivateRoute exact path="/" component={HomePage}/>
+                <PrivateRoute path="/admin" roles={[Role.Admin]}
+                              component={AdminPage}/>
+                <Route path="/login" component={LoginPage}/>
+                <Route path="/register" component={RegisterPage}/>
               </div>
             </div>
           </div>

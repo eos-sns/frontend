@@ -29,7 +29,7 @@ class HomePage extends React.Component {
         <h1>Home</h1>
         <p>Your role is: <strong>{currentUser.role}</strong>.</p>
         <div>
-          Current user from secure api end point:
+          Current user:
           {userFromApi &&
           <ul>
             <li>{userFromApi.firstName} {userFromApi.lastName}</li>
