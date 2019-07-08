@@ -59,7 +59,7 @@ class AdminPage extends React.Component {
     }];
   }
 
-  static updateBackendUser(user) {
+  updateBackendUser(user) {
     this.setState({
       submitting: true
     });
@@ -81,7 +81,7 @@ class AdminPage extends React.Component {
     const oldProperty = user[property];
     user[property] = value;  // set
 
-    AdminPage.updateBackendUser(user)
+    this.updateBackendUser(user)
       .catch((x) => {
         user[property] = oldProperty;  // undo-set
         alert(x);

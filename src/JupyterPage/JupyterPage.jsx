@@ -1,9 +1,8 @@
 import React from 'react';
 
 import {userModel, userService} from '@/_services';
-import Link from "react-router-dom/es/Link";
 
-class HomePage extends React.Component {
+class JupyterPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -26,15 +25,14 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
+        <h1>JupyterNotebook</h1>
         <p>Todo description of usage</p>
         <div>
-          Go to the <Link to="/download">download form</Link> or to your <Link
-          to="/jupyter">interactive JupyterNotebook</Link>
+          todo iframe
         </div>
       </div>
     );
   }
 }
 
-export {HomePage};
+export {JupyterPage};

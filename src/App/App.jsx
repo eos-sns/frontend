@@ -6,8 +6,13 @@ import {history, Role} from '../_helpers';
 import {userModel, userService} from '@/_services';
 import {alertActions} from '../_actions';
 import {PrivateRoute} from '../_components';
+
 import {HomePage} from '../HomePage';
+import {DownloadPage} from '../DownloadPage';
+import {JupyterPage} from '../JupyterPage';
+
 import {AdminPage} from '@/AdminPage';
+
 import {LoginPage} from '../LoginPage';
 import {RegisterPage} from '../RegisterPage';
 
@@ -62,7 +67,10 @@ class App extends React.Component {
                 <div
                   className={`alert ${alert.type}`}>{alert.message}</div>
                 }
+                <PrivateRoute exact path="/jupyter" component={JupyterPage}/>
+                <PrivateRoute exact path="/download" component={DownloadPage}/>
                 <PrivateRoute exact path="/" component={HomePage}/>
+
                 <PrivateRoute path="/admin" roles={[Role.Admin]}
                               component={AdminPage}/>
                 <Route path="/login" component={LoginPage}/>
