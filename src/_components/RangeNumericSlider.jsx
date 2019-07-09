@@ -1,7 +1,8 @@
 import React from 'react';
 import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
-import {Handle, SliderRail, Track} from "@/_components/Sliders";
+import {Handle, SliderRail, Tick, Track} from "@/_components/Sliders";
 import NumericInput from 'react-numeric-input';
+import Ticks from "react-compound-slider/Ticks/Ticks";
 
 const SLIDER_STYLE = {
   position: 'relative',
@@ -9,28 +10,39 @@ const SLIDER_STYLE = {
   touchAction: 'none',
 };
 const DIV_STYLE = {
-  height: 120, width: '100%'
+  height: 150, width: '100%'
 };
 
-class NumericSlider extends React.Component {
-  onNewValue = (newValue) => {
-    this.setState({
-      values: newValue,  // to save value
-      update: newValue  // to update slider
-    });
-  };
-
+class RangeNumericSlider extends React.Component {
   onSliderUpdate = update => {
-    this.setState({update})
+    this.setState({
+      update
+    })
   };
-
   onSliderChange = values => {
-    this.setState({values})
+    this.setState({
+      values
+    })
   };
-  onNumericInputChange = (valueAsNumber, valueAsString, inputElement) => {
+  onNumericInput0Change = (valueAsNumber, valueAsString, inputElement) => {
     // todo try parse `valueAsString`
-    const newValue = [valueAsNumber];
-    this.onNewValue(newValue);
+    const {values} = this.state;
+    const newValues = [valueAsNumber, values[1]];
+    this.setState({
+      values: newValues.slice(),
+      update: newValues.slice()
+    });
+    this.forceUpdate();
+  };
+  onNumericInput1Change = (valueAsNumber, valueAsString, inputElement) => {
+    // todo try parse `valueAsString`
+    const {values} = this.state;
+    const newValues = [values[0], valueAsNumber];
+    this.setState({
+      values: newValues.slice(),
+      update: newValues.slice()
+    });
+    this.forceUpdate();
   };
 
   constructor(props) {
@@ -38,7 +50,7 @@ class NumericSlider extends React.Component {
 
     // const { domain, defaultValues } = { props };
     const domain = [100, 500];  // todo get from props
-    const defaultValues = [150];
+    const defaultValues = [150, 200];
 
     this.state = {
       values: defaultValues.slice(),
@@ -50,23 +62,35 @@ class NumericSlider extends React.Component {
   render() {
     const {values, update, domain} = this.state;
 
-    const NumberInput = () => (
+    const NumberInput0 = () => (
       <NumericInput
         min={domain[0]}
         max={domain[1]}
         value={update[0]}
-        onChange={this.onNumericInputChange}
+        onChange={this.onNumericInput0Change}
+        className="form-control"
+      />
+    );
+
+    const NumberInput1 = () => (
+      <NumericInput
+        min={domain[0]}
+        max={domain[1]}
+        value={update[1]}
+        onChange={this.onNumericInput1Change}
         className="form-control"
       />
     );
 
     return (
       <div style={DIV_STYLE}>
-        <NumberInput/>
+        <NumberInput0/>
+        <NumberInput1/>
         <Slider
           mode={1}
           step={1}
           domain={domain}
+          reversed={false}
           rootStyle={SLIDER_STYLE}
           onUpdate={this.onSliderUpdate}
           onChange={this.onSliderChange}
@@ -89,7 +113,7 @@ class NumericSlider extends React.Component {
               </div>
             )}
           </Handles>
-          <Tracks right={false}>
+          <Tracks left={false} right={false}>
             {({tracks, getTrackProps}) => (
               <div className="slider-tracks">
                 {tracks.map(({id, source, target}) => (
@@ -103,10 +127,19 @@ class NumericSlider extends React.Component {
               </div>
             )}
           </Tracks>
+          <Ticks count={10}>
+            {({ticks}) => (
+              <div className="slider-ticks">
+                {ticks.map(tick => (
+                  <Tick key={tick.id} tick={tick} count={ticks.length}/>
+                ))}
+              </div>
+            )}
+          </Ticks>
         </Slider>
       </div>
     )
   }
 }
 
-export {NumericSlider};
+export {RangeNumericSlider};

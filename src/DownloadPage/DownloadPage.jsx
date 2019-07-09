@@ -2,7 +2,7 @@ import React from 'react';
 
 import {searchService} from '@/_services';
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {NumericSlider} from "@/_components/NumericSlider";
+import {RangeNumericSlider} from "@/_components/RangeNumericSlider";
 
 class DownloadPage extends React.Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class DownloadPage extends React.Component {
   render() {
     return (
       <div>
-        <NumericSlider
+        <RangeNumericSlider
           domain={[100, 500]}
-          defaultValues={[150]}
+          defaultValues={[150, 200]}
         />
 
         <Formik
