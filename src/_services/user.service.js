@@ -9,8 +9,7 @@ export const userService = {
   register,
   getAll,
   getById,
-  update,
-  /* todo delete: _delete, */
+  update
 };
 
 function login(username, password) {
@@ -48,7 +47,7 @@ function register(user) {
 
 function getAll() {
   const requestOptions = {method: 'GET', headers: headers._getAuthHeaders()};
-  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+  return fetch(`${config.usersApiUrl}`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -65,12 +64,3 @@ function update(user) {
 
   return fetch(`${config.usersApiUrl}/${user.id}`, requestOptions).then(handleResponse);
 }
-
-/*function _delete(id) {
-  const requestOptions = {
-    method: 'DELETE',
-    headers: _getAuthHeaders()
-  };
-
-  return fetch(`${config.usersApiUrl}/${id}`, requestOptions).then(handleResponse);
-}*/

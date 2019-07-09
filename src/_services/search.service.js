@@ -9,7 +9,7 @@ export const searchService = {
 function postSearch(searchParams) {
   const requestOptions = {
     method: 'POST',
-    headers: headers._getDefaultHeaders(),
+    headers: headers._getAuthHeaders(),
     body: JSON.stringify(searchParams)
   };
 
