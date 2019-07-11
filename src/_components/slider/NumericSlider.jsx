@@ -1,6 +1,6 @@
 import React from 'react';
 import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
-import {Handle, SliderRail, Track} from "@/_components/slider/Sliders";
+import {Handle, SliderRail, Track} from "../slider";
 import NumericInput from 'react-numeric-input';
 
 const SLIDER_STYLE = {
@@ -36,9 +36,7 @@ class NumericSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    // const { domain, defaultValues } = { props };
-    const domain = [100, 500];  // todo get from props
-    const defaultValues = [150];
+    const {domain, defaultValues} = props;
 
     this.state = {
       values: defaultValues.slice(),

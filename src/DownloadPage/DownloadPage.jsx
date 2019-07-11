@@ -2,8 +2,10 @@ import React from 'react';
 
 import {searchService} from '@/_services';
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {RangeNumericSlider} from "@/_components/slider/RangeNumericSlider";
-import {CheckboxContainer} from "@/_components";
+import {
+  ParameterInputContainer,
+  RangeParameterInputContainer
+} from "@/_components";
 
 class DownloadPage extends React.Component {
   constructor(props) {
@@ -14,13 +16,16 @@ class DownloadPage extends React.Component {
   render() {
     return (
       <div>
-        <RangeNumericSlider
-          domain={[100, 500]}
-          defaultValues={[150, 200]}
+        <RangeParameterInputContainer
+          sliderDomain={[100, 600]}
+          sliderValues={[200, 300]}
+          label={"wow"}
         />
 
-        <CheckboxContainer
-          labels={['File 0', 'File 1', 'File 2']}
+        <ParameterInputContainer
+          sliderDomain={[300, 900]}
+          sliderValues={[500]}
+          label={"wow 1"}
         />
 
         <Formik

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
-import {Handle, SliderRail, Tick, Track} from "@/_components/slider/Sliders";
+import {Handle, SliderRail, Tick, Track} from "../slider";
 import NumericInput from 'react-numeric-input';
 import Ticks from "react-compound-slider/Ticks/Ticks";
 
@@ -19,11 +19,13 @@ class RangeNumericSlider extends React.Component {
       update
     })
   };
+
   onSliderChange = values => {
     this.setState({
       values
     })
   };
+
   onNumericInput0Change = (valueAsNumber, valueAsString, inputElement) => {
     // todo try parse `valueAsString`
     const {values} = this.state;
@@ -34,6 +36,7 @@ class RangeNumericSlider extends React.Component {
     });
     this.forceUpdate();
   };
+
   onNumericInput1Change = (valueAsNumber, valueAsString, inputElement) => {
     // todo try parse `valueAsString`
     const {values} = this.state;
@@ -48,14 +51,12 @@ class RangeNumericSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    // const { domain, defaultValues } = { props };
-    const domain = [100, 500];  // todo get from props
-    const defaultValues = [150, 200];
+    const {domain, defaultValues} = props;
 
     this.state = {
       values: defaultValues.slice(),
       update: defaultValues.slice(),
-      domain: domain  // todo this is const
+      domain: domain  // const
     }
   }
 
