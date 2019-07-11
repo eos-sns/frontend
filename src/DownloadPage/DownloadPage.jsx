@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {searchService} from '@/_services';
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import {Field, Form, Formik} from "formik";
 import {
   ParameterInputContainer,
   RangeParameterInputContainer
@@ -33,21 +33,48 @@ class DownloadPage extends React.Component {
             label={"fEsc10"}
           />
         </div>
+        <div className="sameRow">
+          <RangeParameterInputContainer
+            sliderDomain={[100, 600]}
+            sliderValues={[200, 300]}
+            label={"fStar10"}
+          />
+          <RangeParameterInputContainer
+            sliderDomain={[100, 600]}
+            sliderValues={[200, 300]}
+            label={"lX"}
+          />
+          <RangeParameterInputContainer
+            sliderDomain={[100, 600]}
+            sliderValues={[200, 300]}
+            label={"mTurn"}
+          />
+        </div>
+        <div className="sameRow">
+          <RangeParameterInputContainer
+            sliderDomain={[100, 600]}
+            sliderValues={[200, 300]}
+            label={"tStar"}
+          />
+          <RangeParameterInputContainer
+            sliderDomain={[100, 600]}
+            sliderValues={[200, 300]}
+            label={"sigma8"}
+          />
+          <RangeParameterInputContainer
+            sliderDomain={[100, 600]}
+            sliderValues={[200, 300]}
+            label={"xRaySpecIndex"}
+          />
+        </div>
 
         <Formik
           initialValues={{
-            alphaEsc: '',
-            alphaStar: '',
-            fEsc10: '',
-            fStar10: '',
-            lX: '',
-            mTurn: '',
-            tStar: '',
-            sigma8: '',
-            xRaySpecIndex: ''
+            alphaEsc: ''
           }}
           onSubmit={
             (values, {setStatus, setSubmitting}) => {
+              console.log(values);
               searchService.postSearch(values).then(
                 (res) => {
                   setSubmitting(false);
@@ -63,67 +90,13 @@ class DownloadPage extends React.Component {
           render={({errors, status, touched, isSubmitting}) => (
             <Form>
               <div className="form-group">
-                <label htmlFor="alphaEsc">alphaEsc</label>
-                <Field name="alphaEsc" type="text"
-                       className={'form-control' + (errors.alphaEsc && touched.alphaEsc ? ' is-invalid' : '')}/>
-                <ErrorMessage name="alphaEsc" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="alphaStar">alphaStar</label>
-                <Field name="alphaStar" type="text"
-                       className={'form-control' + (errors.alphaStar && touched.alphaStar ? ' is-invalid' : '')}/>
-                <ErrorMessage name="alphaStar" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="fEsc10">fEsc10</label>
-                <Field name="fEsc10" type="text"
-                       className={'form-control' + (errors.fEsc10 && touched.fEsc10 ? ' is-invalid' : '')}/>
-                <ErrorMessage name="fEsc10" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="fStar10">fStar10</label>
-                <Field name="fStar10" type="text"
-                       className={'form-control' + (errors.fStar10 && touched.fStar10 ? ' is-invalid' : '')}/>
-                <ErrorMessage name="fStar10" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="lX">lX</label>
-                <Field name="lX" type="text"
-                       className={'form-control' + (errors.lX && touched.lX ? ' is-invalid' : '')}/>
-                <ErrorMessage name="lX" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="mTurn">mTurn</label>
-                <Field name="mTurn" type="text"
-                       className={'form-control' + (errors.mTurn && touched.mTurn ? ' is-invalid' : '')}/>
-                <ErrorMessage name="mTurn" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="tStar">tStar</label>
-                <Field name="tStar" type="text"
-                       className={'form-control' + (errors.tStar && touched.tStar ? ' is-invalid' : '')}/>
-                <ErrorMessage name="tStar" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="sigma8">sigma8</label>
-                <Field name="sigma8" type="text"
-                       className={'form-control' + (errors.sigma8 && touched.sigma8 ? ' is-invalid' : '')}/>
-                <ErrorMessage name="sigma8" component="div"
-                              className="invalid-feedback"/>
-              </div>
-              <div className="form-group">
-                <label htmlFor="xRaySpecIndex">xRaySpecIndex</label>
-                <Field name="xRaySpecIndex" type="text"
-                       className={'form-control' + (errors.xRaySpecIndex && touched.xRaySpecIndex ? ' is-invalid' : '')}/>
-                <ErrorMessage name="xRaySpecIndex" component="div"
-                              className="invalid-feedback"/>
+                <Field
+                  sliderDomain={[300, 900]}
+                  sliderValues={[500]}
+                  label={"alphaStar"}
+                  name="alphaEsc"
+                  component={ParameterInputContainer}
+                />
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary"

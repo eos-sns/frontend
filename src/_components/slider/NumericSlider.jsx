@@ -5,7 +5,7 @@ import {NumberInputContainer} from "@/_components";
 
 const SLIDER_STYLE = {
   position: 'relative',
-  width: '100%',
+  width: '95%',
   touchAction: 'none',
 };
 const DIV_STYLE = {
