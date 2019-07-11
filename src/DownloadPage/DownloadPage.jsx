@@ -16,17 +16,23 @@ class DownloadPage extends React.Component {
   render() {
     return (
       <div>
-        <RangeParameterInputContainer
-          sliderDomain={[100, 600]}
-          sliderValues={[200, 300]}
-          label={"wow"}
-        />
-
-        <ParameterInputContainer
-          sliderDomain={[300, 900]}
-          sliderValues={[500]}
-          label={"wow 1"}
-        />
+        <div className="sameRow">
+          <RangeParameterInputContainer
+            sliderDomain={[100, 600]}
+            sliderValues={[200, 300]}
+            label={"alphaEsc"}
+          />
+          <ParameterInputContainer
+            sliderDomain={[300, 900]}
+            sliderValues={[500]}
+            label={"alphaStar"}
+          />
+          <ParameterInputContainer
+            sliderDomain={[300, 900]}
+            sliderValues={[500]}
+            label={"fEsc10"}
+          />
+        </div>
 
         <Formik
           initialValues={{

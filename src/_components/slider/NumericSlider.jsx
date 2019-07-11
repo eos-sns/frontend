@@ -1,7 +1,7 @@
 import React from 'react';
 import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
 import {Handle, SliderRail, Track} from "../slider";
-import NumericInput from 'react-numeric-input';
+import {NumberInputContainer} from "@/_components";
 
 const SLIDER_STYLE = {
   position: 'relative',
@@ -9,7 +9,8 @@ const SLIDER_STYLE = {
   touchAction: 'none',
 };
 const DIV_STYLE = {
-  height: 120, width: '100%'
+  height: 120,
+  width: '100%'
 };
 
 class NumericSlider extends React.Component {
@@ -49,9 +50,10 @@ class NumericSlider extends React.Component {
     const {values, update, domain} = this.state;
 
     const NumberInput = () => (
-      <NumericInput
-        min={domain[0]}
-        max={domain[1]}
+      <NumberInputContainer
+        label={"value:"}
+        minValue={domain[0]}
+        maxValue={domain[1]}
         value={update[0]}
         onChange={this.onNumericInputChange}
         className="form-control"
@@ -61,6 +63,7 @@ class NumericSlider extends React.Component {
     return (
       <div style={DIV_STYLE}>
         <NumberInput/>
+        {<br/>}
         <Slider
           mode={1}
           step={1}

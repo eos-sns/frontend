@@ -20,6 +20,7 @@ class ParameterInputContainer extends React.Component {
     return (
       <React.Fragment>
         <div>{label}</div>
+        {<br/>}
         <NumericSlider
           domain={sliderDomain}
           defaultValues={sliderValues}

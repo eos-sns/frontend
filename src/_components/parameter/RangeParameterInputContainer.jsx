@@ -20,6 +20,7 @@ class RangeParameterInputContainer extends React.Component {
     return (
       <React.Fragment>
         <div>{label}</div>
+        {<br/>}
         <RangeNumericSlider
           domain={sliderDomain}
           defaultValues={sliderValues}

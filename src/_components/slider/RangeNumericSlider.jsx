@@ -1,8 +1,8 @@
 import React from 'react';
 import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
 import {Handle, SliderRail, Tick, Track} from "../slider";
-import NumericInput from 'react-numeric-input';
 import Ticks from "react-compound-slider/Ticks/Ticks";
+import {NumberInputContainer} from "@/_components/inputs";
 
 const SLIDER_STYLE = {
   position: 'relative',
@@ -26,6 +26,7 @@ class RangeNumericSlider extends React.Component {
     })
   };
 
+  // todo index should be an arg
   onNumericInput0Change = (valueAsNumber, valueAsString, inputElement) => {
     // todo try parse `valueAsString`
     const {values} = this.state;
@@ -51,9 +52,10 @@ class RangeNumericSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    const {domain, defaultValues} = props;
+    const {label, domain, defaultValues} = props;
 
     this.state = {
+      label: label,
       values: defaultValues.slice(),
       update: defaultValues.slice(),
       domain: domain  // const
@@ -61,22 +63,24 @@ class RangeNumericSlider extends React.Component {
   }
 
   render() {
-    const {values, update, domain} = this.state;
+    const {label, values, update, domain} = this.state;
 
-    const NumberInput0 = () => (
-      <NumericInput
-        min={domain[0]}
-        max={domain[1]}
+    const NumberInputMin = () => (
+      <NumberInputContainer
+        label={"min:"}
+        minValue={domain[0]}
+        maxValue={domain[1]}
         value={update[0]}
         onChange={this.onNumericInput0Change}
         className="form-control"
       />
     );
 
-    const NumberInput1 = () => (
-      <NumericInput
-        min={domain[0]}
-        max={domain[1]}
+    const NumberInputMax = () => (
+      <NumberInputContainer
+        label={"max:"}
+        minValue={domain[0]}
+        maxValue={domain[1]}
         value={update[1]}
         onChange={this.onNumericInput1Change}
         className="form-control"
@@ -85,8 +89,10 @@ class RangeNumericSlider extends React.Component {
 
     return (
       <div style={DIV_STYLE}>
-        <NumberInput0/>
-        <NumberInput1/>
+        <p>{label}</p>
+        <NumberInputMin/>
+        <NumberInputMax/>
+        {<br/>}
         <Slider
           mode={1}
           step={1}
