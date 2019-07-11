@@ -19,7 +19,9 @@ class DownloadPage extends React.Component {
           defaultValues={[150, 200]}
         />
 
-        <CheckboxContainer/>
+        <CheckboxContainer
+          labels={['File 0', 'File 1', 'File 2']}
+        />
 
         <Formik
           initialValues={{
@@ -39,7 +41,7 @@ class DownloadPage extends React.Component {
                 (res) => {
                   setSubmitting(false);
                   console.log(res);
-                // todo show success
+                  // todo show success
               },
               error => {
                 setSubmitting(false);
@@ -114,7 +116,7 @@ class DownloadPage extends React.Component {
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary"
-                        disabled={isSubmitting}>Search
+                        disabled={isSubmitting}>Download
                 </button>
                 {isSubmitting &&
                 <img
