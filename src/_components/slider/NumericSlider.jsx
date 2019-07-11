@@ -1,6 +1,6 @@
 import React from 'react';
 import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
-import {Handle, SliderRail, Track} from "@/_components/Sliders";
+import {Handle, SliderRail, Track} from "@/_components/slider/Sliders";
 import NumericInput from 'react-numeric-input';
 
 const SLIDER_STYLE = {

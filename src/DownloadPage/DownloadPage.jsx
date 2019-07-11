@@ -2,7 +2,8 @@ import React from 'react';
 
 import {searchService} from '@/_services';
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {RangeNumericSlider} from "@/_components/RangeNumericSlider";
+import {RangeNumericSlider} from "@/_components/slider/RangeNumericSlider";
+import {CheckboxContainer} from "@/_components";
 
 class DownloadPage extends React.Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class DownloadPage extends React.Component {
           domain={[100, 500]}
           defaultValues={[150, 200]}
         />
+
+        <CheckboxContainer/>
 
         <Formik
           initialValues={{
