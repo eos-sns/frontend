@@ -14,37 +14,59 @@ const label2Box = (label, index) => {
 };
 
 class CheckboxContainer extends React.Component {
+  sendStatus = () => {
+    const {checkedItems, checkboxes, onChange} = this.state;
+    let checksState = [];  // array of {}
+    checkboxes.forEach((x) => {
+      checksState.push({
+        name: x.name,
+        label: x.label,
+        checked: checkedItems[x.name] || false
+      })
+    });
+
+    onChange(checksState);
+  };
+
   constructor(props) {
     super(props);
 
-    const {labels} = props;
+    const {title, labels, onChange} = props;
 
     this.state = {
-      checkedItems: new Map(),  // target name -> is checked?
-      checkboxes: labels.map(label2Box)  // todo: this is const
+      title,
+      checkedItems: {},  // name -> checked
+      checkboxes: labels.map(label2Box),  // todo: this is const
+      onChange
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
+    const {checkedItems} = this.state;
     const item = e.target.name;
-    const isChecked = e.target.checked;
-    this.setState(prevState => ({checkedItems: prevState.checkedItems.set(item, isChecked)}));
-    console.log(item, isChecked);
+    checkedItems[item] = e.target.checked;
+
+    this.setState({
+      checkedItems
+    });
+
+    this.sendStatus();
   }
 
   render() {
-    const {checkboxes} = this.state;
+    const {title, checkboxes, checkedItems} = this.state;
 
     return (
       <React.Fragment>
+        <h3>{title}</h3>
         {
           checkboxes.map(item => (
-            <label key={item.key}>
+            <label key={item.key} className={'largeCheckbox'}>
               {item.label}
               <Checkbox name={item.name}
-                        checked={this.state.checkedItems.get(item.name)}
+                        checked={checkedItems[item.name]}
                         onChange={this.handleChange}/>
             </label>
           ))

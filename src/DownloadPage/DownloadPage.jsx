@@ -45,8 +45,6 @@ class DownloadPage extends React.Component {
 
   render() {
     const {status, isSubmitting} = this.state;
-    console.log(status);
-
     const StatusMessage = () => (
       <div>
         {status && status.err &&
@@ -61,6 +59,7 @@ class DownloadPage extends React.Component {
     return (
       <div>
         <SearchForm
+          title={'Parameters'}
           onSubmit={this.onSubmit}
           isSubmitting={isSubmitting}
         />

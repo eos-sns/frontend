@@ -3,11 +3,16 @@ import {
   ParameterInputContainer,
   RangeParameterInputContainer
 } from "@/_components/parameter";
+import {CheckboxContainer} from "@/_components/checkbox";
 
 // todo validationSchema
 class SearchForm extends React.Component {
   handleChange = (key, val) => {
     this.state[key] = val;
+  };
+
+  handleCheckboxChange = (data) => {
+    this.state.files = data;
   };
 
   constructor(props) {
@@ -25,6 +30,7 @@ class SearchForm extends React.Component {
       tStar: '',
       sigma8: '',
       xRaySpecIndex: '',
+      files: {},
       isSubmitting,
       onSubmit
     };
@@ -35,21 +41,22 @@ class SearchForm extends React.Component {
   handleSubmit(event) {
     const {
       alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn, tStar, sigma8,
-      xRaySpecIndex, onSubmit
+      xRaySpecIndex, files, onSubmit
     } = this.state;  // get data
     const dataToSubmit = {
       alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn,
-      tStar, sigma8, xRaySpecIndex
+      tStar, sigma8, xRaySpecIndex, files
     };
     onSubmit(dataToSubmit);  // submit data
     event.preventDefault();  // DO NOT RELOAD page
   }
 
   render() {
-    const {isSubmitting} = this.props;
+    const {title, isSubmitting} = this.props;
 
-    const FormComponents = () => (
+    const ParameterInputs = () => (
       <div>
+        <h3>{title}</h3>
         <div className="sameRow">
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
@@ -131,6 +138,16 @@ class SearchForm extends React.Component {
       </div>
     );
 
+    const FilesCheckboxes = () => (
+      <CheckboxContainer
+        title={'Download files'}
+        labels={[
+          'a', 'b', 'c'
+        ]}
+        onChange={this.handleCheckboxChange}
+      />
+    );
+
     const SubmitButton = () => (
       <button type="submit" className="btn btn-primary"
               disabled={isSubmitting}>Download
@@ -139,7 +156,9 @@ class SearchForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <FormComponents/>
+        <ParameterInputs/>
+        <FilesCheckboxes/>
+        {<br/>}
         <SubmitButton/>
       </form>
     );
