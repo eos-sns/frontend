@@ -5,19 +5,18 @@ class ParameterInputContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    const {sliderDomain, sliderValues, label, field} = props;
-    const value = sliderValues[0];  // formik
+    const {sliderDomain, sliderValues, label, onChange} = props;
 
     this.state = {
       sliderDomain,
       sliderValues,
       label,
-      value
+      onChange
     };
   }
 
   render() {
-    const {sliderDomain, sliderValues, label} = this.state;
+    const {sliderDomain, sliderValues, label, onChange} = this.state;
 
     return (
       <React.Fragment>
@@ -26,6 +25,7 @@ class ParameterInputContainer extends React.Component {
           <NumericSlider
             domain={sliderDomain}
             defaultValues={sliderValues}
+            onChange={onChange}
           />
         </div>
       </React.Fragment>

@@ -14,6 +14,11 @@ const DIV_STYLE = {
 };
 
 class RangeNumericSlider extends React.Component {
+  sendDataToParent = () => {
+    const {onChange, values} = this.state;
+    onChange(values);
+  };
+
   onSliderUpdate = update => {
     this.setState({
       update
@@ -23,7 +28,7 @@ class RangeNumericSlider extends React.Component {
   onSliderChange = values => {
     this.setState({
       values
-    })
+    });
   };
 
   // todo index should be an arg
@@ -47,23 +52,26 @@ class RangeNumericSlider extends React.Component {
       update: newValues.slice()
     });
     this.forceUpdate();
+    this.sendDataToParent();
   };
 
   constructor(props) {
     super(props);
 
-    const {label, domain, defaultValues} = props;
+    const {label, domain, defaultValues, onChange} = props;
 
     this.state = {
       label: label,
       values: defaultValues.slice(),
       update: defaultValues.slice(),
-      domain: domain  // const
+      domain: domain,  // const
+      onChange
     }
   }
 
   render() {
     const {label, values, update, domain} = this.state;
+    this.sendDataToParent();  // update parent
 
     const NumberInputMin = () => (
       <NumberInputContainer

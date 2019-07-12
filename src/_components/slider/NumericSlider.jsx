@@ -14,6 +14,11 @@ const DIV_STYLE = {
 };
 
 class NumericSlider extends React.Component {
+  sendDataToParent = () => {
+    const {onChange, values} = this.state;
+    onChange(values);
+  };
+
   onNewValue = (newValue) => {
     this.setState({
       values: newValue,  // to save value
@@ -28,6 +33,7 @@ class NumericSlider extends React.Component {
   onSliderChange = values => {
     this.setState({values})
   };
+
   onNumericInputChange = (valueAsNumber, valueAsString, inputElement) => {
     // todo try parse `valueAsString`
     const newValue = [valueAsNumber];
@@ -37,17 +43,19 @@ class NumericSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    const {domain, defaultValues} = props;
+    const {domain, defaultValues, onChange} = props;
 
     this.state = {
       values: defaultValues.slice(),
       update: defaultValues.slice(),
-      domain: domain  // todo this is const
+      domain: domain,  // todo this is const
+      onChange
     }
   }
 
   render() {
     const {values, update, domain} = this.state;
+    this.sendDataToParent();  // update parent
 
     const NumberInput = () => (
       <NumberInputContainer
