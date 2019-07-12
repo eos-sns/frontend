@@ -13,7 +13,7 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
 
-    const {onSubmit} = props;
+    const {onSubmit, isSubmitting} = props;
 
     this.state = {
       alphaEsc: '',
@@ -25,6 +25,7 @@ class SearchForm extends React.Component {
       tStar: '',
       sigma8: '',
       xRaySpecIndex: '',
+      isSubmitting,
       onSubmit
     };
 
@@ -45,8 +46,10 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
+    const {isSubmitting} = this.props;
+
+    const FormComponents = () => (
+      <div>
         <div className="sameRow">
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
@@ -125,7 +128,19 @@ class SearchForm extends React.Component {
             }}
           />
         </div>
-        <input type="submit" value="Search"/>
+      </div>
+    );
+
+    const SubmitButton = () => (
+      <button type="submit" className="btn btn-primary"
+              disabled={isSubmitting}>Download
+      </button>
+    );
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <FormComponents/>
+        <SubmitButton/>
       </form>
     );
   }
