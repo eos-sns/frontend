@@ -17,7 +17,7 @@
     "formik": "^1.5.8",
     "history": "^4.9.0",
     "lodash": "^4.17.13",
-    "lodash-es": "^4.17.13",
+    "lodash-es": "^4.17.14",
     "prop-types": "latest",
     "react": "^16.8.6",
     "react-compound-slider": "^2.2.0",
