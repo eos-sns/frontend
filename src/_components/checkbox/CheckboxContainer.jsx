@@ -16,13 +16,10 @@ const label2Box = (label, index) => {
 class CheckboxContainer extends React.Component {
   sendStatus = () => {
     const {checkedItems, checkboxes, onChange} = this.state;
-    let checksState = [];  // array of {}
+    let checksState = [];  // array of bool
     checkboxes.forEach((x) => {
-      checksState.push({
-        name: x.name,
-        label: x.label,
-        checked: checkedItems[x.name] || false
-      })
+      const isChecked = (checkedItems[x.name] || false);
+      checksState.push(isChecked);
     });
 
     onChange(checksState);
@@ -31,12 +28,20 @@ class CheckboxContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    const {title, labels, onChange} = props;
+    const {title, labels, onChange, checks} = props;
+
+    const checkboxes = labels.map(label2Box);
+    let checkedItems = {};
+
+    for (let i = 0; i < checks.length; i++) {
+      const item = checkboxes[i].name;
+      checkedItems[item] = checks[i];
+    }
 
     this.state = {
       title,
-      checkedItems: {},  // name -> checked
-      checkboxes: labels.map(label2Box),  // todo: this is const
+      checkedItems,  // name -> checked
+      checkboxes,  // todo: this is const
       onChange
     };
 
