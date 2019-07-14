@@ -14,12 +14,18 @@ class DownloadPage extends React.Component {
       'status': status
     })
   };
-  onAfterSubmit = (msg, isErr) => {
+  onAfterSubmit = (res, isErr) => {
     this.setSubmitting(false);
     if (isErr) {
-      this.setStatus({'err': msg});
+      this.setStatus({
+        'err': res.toString(),
+        'email': null
+      });
     } else {
-      this.setStatus({'msg': msg});
+      this.setStatus({
+        'msg': res.status.toString(),
+        'email': res.email.toString()
+      });
     }
   };
   onSubmit = (data) => {
@@ -27,10 +33,10 @@ class DownloadPage extends React.Component {
 
     searchService.postSearch(data).then(
       (res) => {
-        this.onAfterSubmit(res.toString(), false);
+        this.onAfterSubmit(res, false);
       },
       (err) => {
-        this.onAfterSubmit(err.toString(), true);
+        this.onAfterSubmit(err, true);
       });
   };
 
@@ -45,13 +51,18 @@ class DownloadPage extends React.Component {
 
   render() {
     const {status, isSubmitting} = this.state;
+    console.log(status);
+
     const StatusMessage = () => (
       <div>
         {status && status.err &&
         <div className={'alert alert-danger'}>{status.err}</div>
         }
-        {status && status.msg &&
-        <div className={'alert alert-success'}>{status.msg}</div>
+        {status && status.msg && status.email &&
+        <div className={'alert alert-success'}>
+          <p>{status.msg}. An email with the download data will be sent
+            to <strong>{status.email}</strong></p>
+        </div>
         }
       </div>
     );

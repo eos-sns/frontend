@@ -43,10 +43,20 @@ class SearchForm extends React.Component {
       alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn, tStar, sigma8,
       xRaySpecIndex, files, onSubmit
     } = this.state;  // get data
-    const dataToSubmit = {
-      alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn,
-      tStar, sigma8, xRaySpecIndex, files
+    const params = {
+      alphaEsc,
+      alphaStar,
+      fEsc10,
+      fStar10,
+      lX,
+      mTurn,
+      tStar,
+      sigma8,
+      xRaySpecIndex
     };
+    const dataToSubmit = {
+      params, files
+    };  // format data
     event.preventDefault();  // DO NOT RELOAD page
     onSubmit(dataToSubmit);  // submit data
   }

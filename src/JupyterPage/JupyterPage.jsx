@@ -26,7 +26,6 @@ class JupyterPage extends React.Component {
 
   render() {
     const {userFromApi} = this.state;
-    console.log(config);
     const JupyterFrame = () => (
       <ReactRedirect src={config.jupyterUrl}/>
     );
