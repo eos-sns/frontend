@@ -24,6 +24,9 @@ class AdminPage extends React.Component {
       Header: 'username',
       accessor: 'username'
     }, {
+      Header: 'email',
+      accessor: 'email'
+    }, {
       Header: 'ID',
       accessor: 'id'
     }, {
