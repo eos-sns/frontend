@@ -33,11 +33,11 @@ module.exports = (env) => {
       historyApiFallback: true
     },
     externals: {
-      // global app config object
       config: JSON.stringify({
         apiUrl: API_URL,
         usersApiUrl: API_URL + '/users',
-        searchApiUrl: API_URL + '/search'
+        searchApiUrl: API_URL + '/search',
+        jupyterUrl: '//localhost:8888'
       })
     }
   }

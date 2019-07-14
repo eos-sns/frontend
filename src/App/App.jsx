@@ -64,7 +64,7 @@ class App extends React.Component {
           }
           <div className="jumbotron">
             <div className="container">
-              <div className="row">
+              <div>
                 {alert.message &&
                 <div
                   className={`alert ${alert.type}`}>{alert.message}</div>

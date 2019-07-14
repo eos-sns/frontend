@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {userModel, userService} from '@/_services';
-import {ReactIFrame} from '@/_components';
+import {ReactRedirect} from '@/_components';
+import config from 'config';
 
 class JupyterPage extends React.Component {
   constructor(props) {
@@ -25,19 +26,21 @@ class JupyterPage extends React.Component {
 
   render() {
     const {userFromApi} = this.state;
+    console.log(config);
     const JupyterFrame = () => (
-      <ReactIFrame src={"//localhost:8811"}/>
+      <ReactRedirect src={config.jupyterUrl}/>
     );
+
+    const NotGrantedComponent = () => {
+      return <h2>Sorry, you've NOT been granted JupyterHub access</h2>
+    };
 
     return (
       <div>
         <h1>JupyterNotebook</h1>
         <div>
           {userFromApi && userFromApi.granted
-            ? (
-              <JupyterFrame/>
-            )
-            : (<h2>Sorry, you've NOT been granted JupyterHub access</h2>)
+            ? (<JupyterFrame/>) : (<NotGrantedComponent/>)
           }
         </div>
       </div>

@@ -1,1 +1,1 @@
-export * from './ReactIFrame';
+export * from './ReactRedirect';
