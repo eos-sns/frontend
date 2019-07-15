@@ -51,8 +51,6 @@ class DownloadPage extends React.Component {
 
   render() {
     const {status, isSubmitting} = this.state;
-    console.log(status);
-
     const StatusMessage = () => (
       <div>
         {status && status.err &&
@@ -60,8 +58,8 @@ class DownloadPage extends React.Component {
         }
         {status && status.msg && status.email &&
         <div className={'alert alert-success'}>
-          <p>{status.msg}. An email with the download data will be sent
-            to <strong>{status.email}</strong></p>
+          <p>{status.msg}. An email has been sent
+            to <strong>{status.email}</strong> with further instructions</p>
         </div>
         }
       </div>

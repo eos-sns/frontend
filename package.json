@@ -12,6 +12,7 @@
     "depcheck": "node ./node_modules/depcheck/bin/depcheck.js"
   },
   "dependencies": {
+    "@matejmazur/react-katex": "^3.0.2",
     "babel-plugin-emotion": "^10.0.14",
     "css-loader": "^3.0.0",
     "formik": "^1.5.8",
@@ -23,6 +24,7 @@
     "react-bootstrap": "^1.0.0-beta.9",
     "react-compound-slider": "^2.2.0",
     "react-dom": "^16.8.6",
+    "react-katex": "^2.0.2",
     "react-loader-spinner": "^2.3.0",
     "react-numeric-input": "^2.2.3",
     "react-redux": "^5.0.5",
@@ -43,6 +45,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.24.1",
     "depcheck": "^0.8.3",
+    "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.23.1",
     "webpack": "4.35.0",

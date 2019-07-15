@@ -75,7 +75,7 @@ class SearchForm extends React.Component {
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={alphaEsc}
-            label={"alphaEsc"}
+            label={"\\alpha \\, Esc"}
             onChange={(x) => {
               this.handleChange('alphaEsc', x)
             }}
@@ -83,7 +83,7 @@ class SearchForm extends React.Component {
           <ParameterInputContainer
             sliderDomain={[300, 900]}
             sliderValues={alphaStar}
-            label={"alphaStar"}
+            label={"\\alpha \\, Star"}
             onChange={(x) => {
               this.handleChange('alphaStar', x)
             }}
@@ -152,11 +152,12 @@ class SearchForm extends React.Component {
       </div>
     );
 
+    // todo labels
     const FilesCheckboxes = () => (
       <CheckboxContainer
         title={'Download files'}
         labels={[
-          'a', 'b', 'c'
+          'GridPositions', 'AveData', 'TauData', 'LightConeBoxes', 'LightConsSlices'
         ]}
         checks={files}
         onChange={this.handleCheckboxChange}

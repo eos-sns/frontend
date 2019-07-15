@@ -1,7 +1,7 @@
 import React from 'react';
 import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
 import {Handle, SliderRail, Track} from "../slider";
-import {NumberInputContainer} from "@/_components";
+import {NumberInputContainer} from "@/_components/inputs";
 
 const SLIDER_STYLE = {
   position: 'relative',
