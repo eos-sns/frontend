@@ -157,7 +157,7 @@ class SearchForm extends React.Component {
       <CheckboxContainer
         title={'Download files'}
         labels={[
-          'GridPositions', 'AveData', 'TauData', 'LightConeBoxes', 'LightConsSlices'
+          'coeval_kZ', 'coeval_PS_z'
         ]}
         checks={files}
         onChange={this.handleCheckboxChange}

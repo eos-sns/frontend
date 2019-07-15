@@ -1,5 +1,6 @@
 import React from 'react';
 import {Checkbox} from './Checkbox';
+import {TeX} from "@/_components/labels";
 
 /**
  * Converts list of labels to objects with name, key, label
@@ -33,7 +34,7 @@ class CheckboxContainer extends React.Component {
     const checkboxes = labels.map(label2Box);
     let checkedItems = {};
 
-    for (let i = 0; i < checks.length; i++) {
+    for (let i = 0; i < checkboxes.length; i++) {
       const item = checkboxes[i].name;
       checkedItems[item] = checks[i];
     }
@@ -66,16 +67,18 @@ class CheckboxContainer extends React.Component {
     return (
       <React.Fragment>
         <h3>{title}</h3>
-        {
-          checkboxes.map(item => (
-            <label key={item.key} className={'largeCheckbox'}>
-              {item.label}
-              <Checkbox name={item.name}
-                        checked={checkedItems[item.name]}
-                        onChange={this.handleChange}/>
-            </label>
-          ))
-        }
+        <div className={"sameRow"}>
+          {
+            checkboxes.map(item => (
+              <div key={item.key}>
+                <Checkbox name={item.name}
+                          checked={checkedItems[item.name]}
+                          onChange={this.handleChange}/>
+                <label htmlFor={item.name}><TeX label={item.label}/></label>
+              </div>
+            ))
+          }
+        </div>
       </React.Fragment>
     );
   }
