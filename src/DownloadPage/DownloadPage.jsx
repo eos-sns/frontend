@@ -16,14 +16,29 @@ class DownloadPage extends React.Component {
   };
   onAfterSubmit = (res, isErr) => {
     this.setSubmitting(false);
+    let msg = res.status;
+    if (msg === undefined) {
+      msg = 'Server error';
+    } else {
+      msg = msg.toString();
+    }
+
+    let resCode = res.code;
+    if (resCode === undefined) {
+      resCode = -1;
+    } else {
+      resCode = parseInt(resCode.toString());
+    }
+
+    isErr = (isErr || resCode !== 200);
     if (isErr) {
       this.setStatus({
-        'err': res.toString(),
+        'err': 'Error. ' + msg,
         'email': null
       });
     } else {
       this.setStatus({
-        'msg': res.status.toString(),
+        'msg': msg,
         'email': res.email.toString()
       });
     }
