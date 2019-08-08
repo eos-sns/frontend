@@ -18,21 +18,22 @@ class RegisterPage extends React.Component {
             firstName: '',
             lastName: '',
             username: '',
-            password: ''
+            password: '',
+            email: ''
           }}
           validationSchema={Yup.object().shape({
-            /* todo firstName: '',
-            lastName: '',*/
             username: Yup.string().required('Username is required'),
-            password: Yup.string().required('Password is required')
+            password: Yup.string().required('Password is required'),
+            email: Yup.string().required('Email is required')
           })}
-          onSubmit={({firstName, lastName, username, password}, {setStatus, setSubmitting}) => {
+          onSubmit={({firstName, lastName, username, password, email}, {setStatus, setSubmitting}) => {
             setStatus();
             const newUser = {
               firstName,
               lastName,
               username,
-              password
+              password,
+              email
             };
             userService.register(newUser).then(
               () => {
@@ -66,6 +67,13 @@ class RegisterPage extends React.Component {
                 <Field name="username" type="text"
                        className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')}/>
                 <ErrorMessage name="username" component="div"
+                              className="invalid-feedback"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <Field name="email" type="text"
+                       className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')}/>
+                <ErrorMessage name="email" component="div"
                               className="invalid-feedback"/>
               </div>
               <div className="form-group">

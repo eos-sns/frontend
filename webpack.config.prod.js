@@ -12,7 +12,7 @@ module.exports = (env) => {
       apiUrl: API_URL,
       usersApiUrl: API_URL + '/users',
       searchApiUrl: API_URL + '/search',
-      jupyterUrl: 'https://eos.sns.it/2001'
+      jupyterUrl: 'https://eos.sns.it:2001'
     })
   };
   const newConfig = {
