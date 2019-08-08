@@ -111,7 +111,7 @@ class RangeNumericSlider extends React.Component {
         {<br />}
         <Slider
           mode={1}
-          step={1}
+          step={0.1}
           domain={domain}
           reversed={false}
           rootStyle={SLIDER_STYLE}

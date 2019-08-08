@@ -55,6 +55,14 @@ class NumericSlider extends React.Component {
     };
   }
 
+  computeStepDomain = (domain) => {
+    const _max = Math.max(domain);
+    const _min = Math.min(domain);
+    const _range = _max - _min;
+    const nSteps = 1000;
+    return _range / nSteps;
+  };
+
   render() {
     const { values, update, domain } = this.state;
     this.sendDataToParent(); // update parent
@@ -76,7 +84,7 @@ class NumericSlider extends React.Component {
         {<br />}
         <Slider
           mode={1}
-          step={1}
+          step={0.1}
           domain={domain}
           rootStyle={SLIDER_STYLE}
           onUpdate={this.onSliderUpdate}

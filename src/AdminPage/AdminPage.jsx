@@ -73,8 +73,6 @@ class AdminPage extends React.Component {
       submitting: true,
     });
 
-    console.log('updating...');
-    console.log(user);
     return userService.update(user);
   }
 

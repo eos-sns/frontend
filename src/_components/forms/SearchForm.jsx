@@ -21,16 +21,16 @@ class SearchForm extends React.Component {
     const { onSubmit, isSubmitting } = props;
 
     this.state = {
-      alphaEsc: [200, 300],
-      alphaStar: [500],
-      fEsc10: [500],
-      fStar10: [200, 300],
-      lX: [200, 300],
-      mTurn: [200, 300],
-      tStar: [200, 300],
+      alphaEsc: [-1.0, 0.5],
+      alphaStar: [-0.4],
+      fEsc10: [0.1],
+      fStar10: [0.0, 0.2],
+      lX: [38, 42],
+      mTurn: [8, 10],
+      tStar: [0.1, 1],
       sigma8: [200, 300],
-      xRaySpecIndex: [200, 300],
-      files: [false, false, false],
+      xRaySpecIndex: [0.1, 1.5],
+      files: [false, false],
       isSubmitting,
       onSubmit,
     };
@@ -73,7 +73,7 @@ class SearchForm extends React.Component {
         <h3>{title}</h3>
         <div className="sameRow">
           <RangeParameterInputContainer
-            sliderDomain={[100, 600]}
+            sliderDomain={[-1.0, 0.5]}
             sliderValues={alphaEsc}
             label={'\\alpha \\, Esc'}
             onChange={(x) => {
@@ -81,7 +81,7 @@ class SearchForm extends React.Component {
             }}
           />
           <ParameterInputContainer
-            sliderDomain={[300, 900]}
+            sliderDomain={[-0.5, 1.0]}
             sliderValues={alphaStar}
             label={'\\alpha \\, Star'}
             onChange={(x) => {
@@ -89,7 +89,7 @@ class SearchForm extends React.Component {
             }}
           />
           <ParameterInputContainer
-            sliderDomain={[300, 900]}
+            sliderDomain={[0.0, 0.5]}
             sliderValues={fEsc10}
             label="fEsc10"
             onChange={(x) => {
@@ -99,7 +99,7 @@ class SearchForm extends React.Component {
         </div>
         <div className="sameRow">
           <RangeParameterInputContainer
-            sliderDomain={[100, 600]}
+            sliderDomain={[0.0, 0.2]}
             sliderValues={fStar10}
             label="fStar10"
             onChange={(x) => {
@@ -107,7 +107,7 @@ class SearchForm extends React.Component {
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[100, 600]}
+            sliderDomain={[38, 42]}
             sliderValues={lX}
             label="lX"
             onChange={(x) => {
@@ -115,7 +115,7 @@ class SearchForm extends React.Component {
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[100, 600]}
+            sliderDomain={[8, 10]}
             sliderValues={mTurn}
             label="mTurn"
             onChange={(x) => {
@@ -125,7 +125,7 @@ class SearchForm extends React.Component {
         </div>
         <div className="sameRow">
           <RangeParameterInputContainer
-            sliderDomain={[100, 600]}
+            sliderDomain={[0.1, 1]}
             sliderValues={tStar}
             label="tStar"
             onChange={(x) => {
@@ -133,7 +133,7 @@ class SearchForm extends React.Component {
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[100, 600]}
+            sliderDomain={[200, 300]}
             sliderValues={sigma8}
             label="sigma8"
             onChange={(x) => {
@@ -141,7 +141,7 @@ class SearchForm extends React.Component {
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[100, 600]}
+            sliderDomain={[0.1, 1.5]}
             sliderValues={xRaySpecIndex}
             label="xRaySpecIndex"
             onChange={(x) => {
@@ -157,7 +157,7 @@ class SearchForm extends React.Component {
       <CheckboxContainer
         title="Download files"
         labels={[
-          'coeval_kZ', 'coeval_PS_z',
+          'coeval_kZ', 'coeval_PS_z'
         ]}
         checks={files}
         onChange={this.handleCheckboxChange}
