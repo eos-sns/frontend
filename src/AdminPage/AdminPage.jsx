@@ -3,7 +3,7 @@ import React from 'react';
 import Switch from 'react-switch';
 import ReactTable from 'react-table';
 import Checkbox from 'react-simple-checkbox';
-import {userService} from '@/_services';
+import { userService } from '@/_services';
 
 class AdminPage extends React.Component {
   constructor(props) {
@@ -106,11 +106,11 @@ class AdminPage extends React.Component {
   }
 
   componentDidMount() {
-    userService.getAll().then(users => this.setState({users}));
+    userService.getAll().then(users => this.setState({ users }));
   }
 
   render() {
-    const {users} = this.state;
+    const { users } = this.state;
 
     return (
       <div>
@@ -124,4 +124,4 @@ class AdminPage extends React.Component {
   }
 }
 
-export {AdminPage};
+export { AdminPage };

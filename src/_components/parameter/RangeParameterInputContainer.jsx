@@ -1,6 +1,6 @@
 import React from 'react';
-import {RangeNumericSlider} from '../slider';
-import {TeX} from '@/_components/labels';
+import { RangeNumericSlider } from '../slider';
+import { TeX } from '@/_components/labels';
 
 class RangeParameterInputContainer extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class RangeParameterInputContainer extends React.Component {
     return (
       <React.Fragment>
         <div>
-          <h4><TeX label={label}/></h4>
+          <h4><TeX label={label} /></h4>
           <RangeNumericSlider
             domain={sliderDomain}
             defaultValues={sliderValues}
@@ -38,4 +38,4 @@ class RangeParameterInputContainer extends React.Component {
   }
 }
 
-export {RangeParameterInputContainer};
+export { RangeParameterInputContainer };

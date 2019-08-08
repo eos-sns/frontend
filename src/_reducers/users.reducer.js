@@ -1,4 +1,4 @@
-import {userConstants} from '../_constants';
+import { userConstants } from '../_constants';
 
 export function users(state = {}, action) {
   switch (action.type) {
@@ -19,7 +19,7 @@ export function users(state = {}, action) {
       return {
         ...state,
         items: state.items.map(user => (user.id === action.id
-          ? {...user, deleting: true}
+          ? { ...user, deleting: true }
           : user)),
       };
     case userConstants.DELETE_SUCCESS:
@@ -34,9 +34,9 @@ export function users(state = {}, action) {
         items: state.items.map((user) => {
           if (user.id === action.id) {
             // make copy of user without 'deleting:true' property
-            const {deleting, ...userCopy} = user;
+            const { deleting, ...userCopy } = user;
             // return copy of user with 'deleteError:[error]' property
-            return {...userCopy, deleteError: action.error};
+            return { ...userCopy, deleteError: action.error };
           }
 
           return user;

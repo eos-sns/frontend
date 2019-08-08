@@ -1,6 +1,6 @@
 import config from 'config';
-import {handleResponse} from '../_helpers';
-import {headers} from './headers';
+import { handleResponse } from '../_helpers';
+import { headers } from './headers';
 
 export const searchService = {
   postSearch,

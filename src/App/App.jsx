@@ -1,20 +1,20 @@
 import React from 'react';
-import {Link, Route, Router} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link, Route, Router } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import {history, Role} from '../_helpers';
-import {userModel, userService} from '@/_services';
-import {alertActions} from '../_actions';
-import {PrivateRoute} from '../_components';
+import { history, Role } from '../_helpers';
+import { userModel, userService } from '@/_services';
+import { alertActions } from '../_actions';
+import { PrivateRoute } from '../_components';
 
-import {HomePage} from '../HomePage';
-import {DownloadPage} from '../DownloadPage';
-import {JupyterPage} from '../JupyterPage';
+import { HomePage } from '../HomePage';
+import { DownloadPage } from '../DownloadPage';
+import { JupyterPage } from '../JupyterPage';
 
-import {AdminPage} from '@/AdminPage';
+import { AdminPage } from '@/AdminPage';
 
-import {LoginPage} from '../LoginPage';
-import {RegisterPage} from '../RegisterPage';
+import { LoginPage } from '../LoginPage';
+import { RegisterPage } from '../RegisterPage';
 
 class App extends React.Component {
   static logout() {
@@ -25,7 +25,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     history.listen(() => {
       dispatch(alertActions.clear()); // clear alert on location change
     });
@@ -44,8 +44,8 @@ class App extends React.Component {
   }
 
   render() {
-    const {currentUser, isAdmin} = this.state;
-    const {alert} = this.props;
+    const { currentUser, isAdmin } = this.state;
+    const { alert } = this.props;
     return (
       <Router history={history}>
         <div>
@@ -80,17 +80,17 @@ class App extends React.Component {
                 </div>
                 )
                 }
-                <PrivateRoute exact path="/jupyter" component={JupyterPage}/>
-                <PrivateRoute exact path="/download" component={DownloadPage}/>
-                <PrivateRoute exact path="/" component={HomePage}/>
+                <PrivateRoute exact path="/jupyter" component={JupyterPage} />
+                <PrivateRoute exact path="/download" component={DownloadPage} />
+                <PrivateRoute exact path="/" component={HomePage} />
 
                 <PrivateRoute
                   path="/admin"
                   roles={[Role.Admin]}
                   component={AdminPage}
                 />
-                <Route path="/login" component={LoginPage}/>
-                <Route path="/register" component={RegisterPage}/>
+                <Route path="/login" component={LoginPage} />
+                <Route path="/register" component={RegisterPage} />
               </div>
             </div>
           </div>
@@ -101,11 +101,11 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const {alert} = state;
+  const { alert } = state;
   return {
     alert,
   };
 }
 
 const connectedApp = connect(mapStateToProps)(App);
-export {connectedApp as App};
+export { connectedApp as App };

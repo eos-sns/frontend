@@ -1,6 +1,6 @@
 import React from 'react';
-import {Checkbox} from './Checkbox';
-import {TeX} from '@/_components/labels';
+import { Checkbox } from './Checkbox';
+import { TeX } from '@/_components/labels';
 
 /**
  * Converts list of labels to objects with name, key, label
@@ -16,7 +16,7 @@ const label2Box = (label, index) => {
 
 class CheckboxContainer extends React.Component {
   sendStatus = () => {
-    const {checkedItems, checkboxes, onChange} = this.state;
+    const { checkedItems, checkboxes, onChange } = this.state;
     const checksState = []; // array of bool
     checkboxes.forEach((x) => {
       const isChecked = (checkedItems[x.name] || false);
@@ -52,7 +52,7 @@ class CheckboxContainer extends React.Component {
   }
 
   handleChange(e) {
-    const {checkedItems} = this.state;
+    const { checkedItems } = this.state;
     const item = e.target.name;
     checkedItems[item] = e.target.checked;
 
@@ -64,7 +64,7 @@ class CheckboxContainer extends React.Component {
   }
 
   render() {
-    const {title, checkboxes, checkedItems} = this.state;
+    const { title, checkboxes, checkedItems } = this.state;
 
     return (
       <React.Fragment>
@@ -78,7 +78,7 @@ class CheckboxContainer extends React.Component {
                   checked={checkedItems[item.name]}
                   onChange={this.handleChange}
                 />
-                <label htmlFor={item.name}><TeX label={item.label}/></label>
+                <label htmlFor={item.name}><TeX label={item.label} /></label>
               </div>
             ))
           }
@@ -88,4 +88,4 @@ class CheckboxContainer extends React.Component {
   }
 }
 
-export {CheckboxContainer};
+export { CheckboxContainer };

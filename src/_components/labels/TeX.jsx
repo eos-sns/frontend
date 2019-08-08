@@ -1,5 +1,5 @@
 import React from 'react';
-import {InlineMath} from 'react-katex';
+import { InlineMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
 class TeX extends React.Component {
@@ -8,7 +8,7 @@ class TeX extends React.Component {
   }
 
   render() {
-    const {label} = this.props;
+    const { label } = this.props;
 
     return (
       <React.Fragment>
@@ -18,4 +18,4 @@ class TeX extends React.Component {
   }
 }
 
-export {TeX};
+export { TeX };

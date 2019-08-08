@@ -23,7 +23,7 @@ class NumberInputContainer extends React.Component {
     return (
       <React.Fragment>
         <div className="sameRow">
-          <p style={{marginRight: '5%'}}>{label}</p>
+          <p style={{ marginRight: '5%' }}>{label}</p>
           <NumericInput
             min={minValue}
             max={maxValue}
@@ -37,4 +37,4 @@ class NumberInputContainer extends React.Component {
   }
 }
 
-export {NumberInputContainer};
+export { NumberInputContainer };

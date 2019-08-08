@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-unresolved
 import config from 'config';
-import {handleResponse} from '../_helpers';
-import {userModel} from './user.model';
-import {headers} from './headers';
+import { handleResponse } from '../_helpers';
+import { userModel } from './user.model';
+import { headers } from './headers';
 
 export const userService = {
   login,
@@ -17,7 +17,7 @@ function login(username, password) {
   const requestOptions = {
     method: 'POST',
     headers: headers._getDefaultHeaders(),
-    body: JSON.stringify({username, password}),
+    body: JSON.stringify({ username, password }),
   };
 
   return fetch(`${config.usersApiUrl}/authenticate`, requestOptions)
@@ -47,12 +47,12 @@ function register(user) {
 }
 
 function getAll() {
-  const requestOptions = {method: 'GET', headers: headers._getAuthHeaders()};
+  const requestOptions = { method: 'GET', headers: headers._getAuthHeaders() };
   return fetch(`${config.usersApiUrl}`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
-  const requestOptions = {method: 'GET', headers: headers._getAuthHeaders()};
+  const requestOptions = { method: 'GET', headers: headers._getAuthHeaders() };
   return fetch(`${config.usersApiUrl}/${id}`, requestOptions).then(handleResponse);
 }
 

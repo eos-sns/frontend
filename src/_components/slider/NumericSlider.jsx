@@ -1,7 +1,9 @@
 import React from 'react';
-import {Handles, Rail, Slider, Tracks,} from 'react-compound-slider';
-import {Handle, SliderRail, Track} from '.';
-import {NumberInputContainer} from '@/_components/inputs';
+import {
+  Handles, Rail, Slider, Tracks,
+} from 'react-compound-slider';
+import { Handle, SliderRail, Track } from '.';
+import { NumberInputContainer } from '@/_components/inputs';
 
 const SLIDER_STYLE = {
   position: 'relative',
@@ -15,7 +17,7 @@ const DIV_STYLE = {
 
 class NumericSlider extends React.Component {
   sendDataToParent = () => {
-    const {onChange, values} = this.state;
+    const { onChange, values } = this.state;
     onChange(values);
   };
 
@@ -27,11 +29,11 @@ class NumericSlider extends React.Component {
   };
 
   onSliderUpdate = (update) => {
-    this.setState({update});
+    this.setState({ update });
   };
 
   onSliderChange = (values) => {
-    this.setState({values});
+    this.setState({ values });
   };
 
   onNumericInputChange = (valueAsNumber, valueAsString, inputElement) => {
@@ -43,7 +45,7 @@ class NumericSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    const {domain, defaultValues, onChange} = props;
+    const { domain, defaultValues, onChange } = props;
 
     this.state = {
       values: defaultValues.slice(),
@@ -54,7 +56,7 @@ class NumericSlider extends React.Component {
   }
 
   render() {
-    const {values, update, domain} = this.state;
+    const { values, update, domain } = this.state;
     this.sendDataToParent(); // update parent
 
     const NumberInput = () => (
@@ -70,8 +72,8 @@ class NumericSlider extends React.Component {
 
     return (
       <div style={DIV_STYLE}>
-        <NumberInput/>
-        {<br/>}
+        <NumberInput />
+        {<br />}
         <Slider
           mode={1}
           step={1}
@@ -82,10 +84,10 @@ class NumericSlider extends React.Component {
           values={values}
         >
           <Rail>
-            {({getRailProps}) => <SliderRail getRailProps={getRailProps}/>}
+            {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
           </Rail>
           <Handles>
-            {({handles, getHandleProps}) => (
+            {({ handles, getHandleProps }) => (
               <div className="slider-handles">
                 {handles.map(handle => (
                   <Handle
@@ -99,9 +101,9 @@ class NumericSlider extends React.Component {
             )}
           </Handles>
           <Tracks right={false}>
-            {({tracks, getTrackProps}) => (
+            {({ tracks, getTrackProps }) => (
               <div className="slider-tracks">
-                {tracks.map(({id, source, target}) => (
+                {tracks.map(({ id, source, target }) => (
                   <Track
                     key={id}
                     source={source}
@@ -118,4 +120,4 @@ class NumericSlider extends React.Component {
   }
 }
 
-export {NumericSlider};
+export { NumericSlider };

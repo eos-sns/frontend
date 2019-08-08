@@ -3,7 +3,7 @@ import {
   ParameterInputContainer,
   RangeParameterInputContainer,
 } from '@/_components/parameter';
-import {CheckboxContainer} from '@/_components/checkbox';
+import { CheckboxContainer } from '@/_components/checkbox';
 
 // todo validationSchema
 class SearchForm extends React.Component {
@@ -18,7 +18,7 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
 
-    const {onSubmit, isSubmitting} = props;
+    const { onSubmit, isSubmitting } = props;
 
     this.state = {
       alphaEsc: [200, 300],
@@ -62,7 +62,7 @@ class SearchForm extends React.Component {
   }
 
   render() {
-    const {title, isSubmitting} = this.props;
+    const { title, isSubmitting } = this.props;
     const {
       alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn, tStar, sigma8,
       xRaySpecIndex, files,
@@ -176,13 +176,13 @@ class SearchForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <ParameterInputs/>
-        <FilesCheckboxes/>
-        {<br/>}
-        <SubmitButton/>
+        <ParameterInputs />
+        <FilesCheckboxes />
+        {<br />}
+        <SubmitButton />
       </form>
     );
   }
 }
 
-export {SearchForm};
+export { SearchForm };

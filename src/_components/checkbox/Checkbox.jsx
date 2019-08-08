@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 // todo better css
 const Checkbox = ({
-                    type = 'checkbox', name, checked = false, onChange,
-                  }) => (
-  <input type={type} name={name} checked={checked} onChange={onChange}/>
+  type = 'checkbox', name, checked = false, onChange,
+}) => (
+  <input type={type} name={name} checked={checked} onChange={onChange} />
 );
 
 Checkbox.propTypes = {
@@ -15,4 +15,4 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export {Checkbox};
+export { Checkbox };

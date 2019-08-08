@@ -1,4 +1,4 @@
-import {authHeader} from '@/_helpers';
+import { authHeader } from '@/_helpers';
 
 export const headers = {
   _getDefaultHeaders,
@@ -6,7 +6,7 @@ export const headers = {
 };
 
 function _getJSONHeaders() {
-  return {'Content-Type': 'application/json'};
+  return { 'Content-Type': 'application/json' };
 }
 
 function _getDefaultHeaders() {
@@ -14,5 +14,5 @@ function _getDefaultHeaders() {
 }
 
 function _getAuthHeaders() {
-  return {...authHeader(), ..._getDefaultHeaders()};
+  return { ...authHeader(), ..._getDefaultHeaders() };
 }

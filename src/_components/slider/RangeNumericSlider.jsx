@@ -1,8 +1,12 @@
 import React from 'react';
-import {Handles, Rail, Slider, Tracks,} from 'react-compound-slider';
+import {
+  Handles, Rail, Slider, Tracks,
+} from 'react-compound-slider';
 import Ticks from 'react-compound-slider/Ticks/Ticks';
-import {Handle, SliderRail, Tick, Track,} from '.';
-import {NumberInputContainer} from '@/_components/inputs';
+import {
+  Handle, SliderRail, Tick, Track,
+} from '.';
+import { NumberInputContainer } from '@/_components/inputs';
 
 const SLIDER_STYLE = {
   position: 'relative',
@@ -15,7 +19,7 @@ const DIV_STYLE = {
 
 class RangeNumericSlider extends React.Component {
   sendDataToParent = () => {
-    const {onChange, values} = this.state;
+    const { onChange, values } = this.state;
     onChange(values);
   };
 
@@ -34,7 +38,7 @@ class RangeNumericSlider extends React.Component {
   // todo index should be an arg
   onNumericInput0Change = (valueAsNumber, valueAsString, inputElement) => {
     // todo try parse `valueAsString`
-    const {values} = this.state;
+    const { values } = this.state;
     const newValues = [valueAsNumber, values[1]];
     this.setState({
       values: newValues.slice(),
@@ -45,7 +49,7 @@ class RangeNumericSlider extends React.Component {
 
   onNumericInput1Change = (valueAsNumber, valueAsString, inputElement) => {
     // todo try parse `valueAsString`
-    const {values} = this.state;
+    const { values } = this.state;
     const newValues = [values[0], valueAsNumber];
     this.setState({
       values: newValues.slice(),
@@ -102,9 +106,9 @@ class RangeNumericSlider extends React.Component {
     return (
       <div style={DIV_STYLE}>
         <p>{label}</p>
-        <NumberInputMin/>
-        <NumberInputMax/>
-        {<br/>}
+        <NumberInputMin />
+        <NumberInputMax />
+        {<br />}
         <Slider
           mode={1}
           step={1}
@@ -116,10 +120,10 @@ class RangeNumericSlider extends React.Component {
           values={values}
         >
           <Rail>
-            {({getRailProps}) => <SliderRail getRailProps={getRailProps}/>}
+            {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
           </Rail>
           <Handles>
-            {({handles, getHandleProps}) => (
+            {({ handles, getHandleProps }) => (
               <div className="slider-handles">
                 {handles.map(handle => (
                   <Handle
@@ -133,9 +137,9 @@ class RangeNumericSlider extends React.Component {
             )}
           </Handles>
           <Tracks left={false} right={false}>
-            {({tracks, getTrackProps}) => (
+            {({ tracks, getTrackProps }) => (
               <div className="slider-tracks">
-                {tracks.map(({id, source, target}) => (
+                {tracks.map(({ id, source, target }) => (
                   <Track
                     key={id}
                     source={source}
@@ -147,10 +151,10 @@ class RangeNumericSlider extends React.Component {
             )}
           </Tracks>
           <Ticks count={10}>
-            {({ticks}) => (
+            {({ ticks }) => (
               <div className="slider-ticks">
                 {ticks.map(tick => (
-                  <Tick key={tick.id} tick={tick} count={ticks.length}/>
+                  <Tick key={tick.id} tick={tick} count={ticks.length} />
                 ))}
               </div>
             )}
@@ -161,4 +165,4 @@ class RangeNumericSlider extends React.Component {
   }
 }
 
-export {RangeNumericSlider};
+export { RangeNumericSlider };

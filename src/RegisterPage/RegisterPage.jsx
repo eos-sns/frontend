@@ -1,8 +1,10 @@
 import React from 'react';
-import {ErrorMessage, Field, Form, Formik,} from 'formik';
+import {
+  ErrorMessage, Field, Form, Formik,
+} from 'formik';
 import * as Yup from 'yup';
 import Link from 'react-router-dom/es/Link';
-import {userService} from '@/_services';
+import { userService } from '@/_services';
 
 class RegisterPage extends React.Component {
   constructor(props) {
@@ -27,8 +29,8 @@ class RegisterPage extends React.Component {
             email: Yup.string().required('Email is required'),
           })}
           onSubmit={({
-                       firstName, lastName, username, password, email,
-                     }, {setStatus, setSubmitting}) => {
+            firstName, lastName, username, password, email,
+          }, { setStatus, setSubmitting }) => {
             setStatus();
             const newUser = {
               firstName,
@@ -39,7 +41,7 @@ class RegisterPage extends React.Component {
             };
             userService.register(newUser).then(
               () => {
-                const {from} = this.props.location.state || {from: {pathname: '/'}};
+                const { from } = this.props.location.state || { from: { pathname: '/' } };
                 this.props.history.push(from);
               },
               (error) => {
@@ -49,8 +51,8 @@ class RegisterPage extends React.Component {
             );
           }}
           render={({
-                     errors, status, touched, registering,
-                   }) => (
+            errors, status, touched, registering,
+          }) => (
             <Form>
               <div className="form-group">
                 <label htmlFor="firstName">First name</label>
@@ -149,4 +151,4 @@ class RegisterPage extends React.Component {
   }
 }
 
-export {RegisterPage};
+export { RegisterPage };

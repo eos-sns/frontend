@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {SearchForm} from '@/_components';
-import {searchService} from '@/_services/search.service';
+import { SearchForm } from '@/_components';
+import { searchService } from '@/_services/search.service';
 
 class DownloadPage extends React.Component {
   setSubmitting = (isSubmitting) => {
@@ -72,7 +72,7 @@ class DownloadPage extends React.Component {
   }
 
   render() {
-    const {status, isSubmitting} = this.state;
+    const { status, isSubmitting } = this.state;
     const StatusMessage = () => (
       <div>
         {status && status.err
@@ -90,7 +90,7 @@ class DownloadPage extends React.Component {
               {' '}
               with further instructions
             </p>
-        </div>
+          </div>
         )
         }
       </div>
@@ -103,11 +103,11 @@ class DownloadPage extends React.Component {
           onSubmit={this.onSubmit}
           isSubmitting={isSubmitting}
         />
-        {<br/>}
-        <StatusMessage/>
+        {<br />}
+        <StatusMessage />
       </div>
     );
   }
 }
 
-export {DownloadPage};
+export { DownloadPage };
