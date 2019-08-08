@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   ParameterInputContainer,
-  RangeParameterInputContainer
-} from "@/_components/parameter";
-import {CheckboxContainer} from "@/_components/checkbox";
+  RangeParameterInputContainer,
+} from '@/_components/parameter';
+import {CheckboxContainer} from '@/_components/checkbox';
 
 // todo validationSchema
 class SearchForm extends React.Component {
@@ -32,7 +32,7 @@ class SearchForm extends React.Component {
       xRaySpecIndex: [200, 300],
       files: [false, false, false],
       isSubmitting,
-      onSubmit
+      onSubmit,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,8 +41,8 @@ class SearchForm extends React.Component {
   handleSubmit(event) {
     const {
       alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn, tStar, sigma8,
-      xRaySpecIndex, files, onSubmit
-    } = this.state;  // get data
+      xRaySpecIndex, files, onSubmit,
+    } = this.state; // get data
     const params = {
       alphaEsc,
       alphaStar,
@@ -52,20 +52,20 @@ class SearchForm extends React.Component {
       mTurn,
       tStar,
       sigma8,
-      xRaySpecIndex
+      xRaySpecIndex,
     };
     const dataToSubmit = {
-      params, files
-    };  // format data
-    event.preventDefault();  // DO NOT RELOAD page
-    onSubmit(dataToSubmit);  // submit data
+      params, files,
+    }; // format data
+    event.preventDefault(); // DO NOT RELOAD page
+    onSubmit(dataToSubmit); // submit data
   }
 
   render() {
     const {title, isSubmitting} = this.props;
     const {
       alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn, tStar, sigma8,
-      xRaySpecIndex, files
+      xRaySpecIndex, files,
     } = this.state;
 
     const ParameterInputs = () => (
@@ -75,25 +75,25 @@ class SearchForm extends React.Component {
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={alphaEsc}
-            label={"\\alpha \\, Esc"}
+            label={'\\alpha \\, Esc'}
             onChange={(x) => {
-              this.handleChange('alphaEsc', x)
+              this.handleChange('alphaEsc', x);
             }}
           />
           <ParameterInputContainer
             sliderDomain={[300, 900]}
             sliderValues={alphaStar}
-            label={"\\alpha \\, Star"}
+            label={'\\alpha \\, Star'}
             onChange={(x) => {
-              this.handleChange('alphaStar', x)
+              this.handleChange('alphaStar', x);
             }}
           />
           <ParameterInputContainer
             sliderDomain={[300, 900]}
             sliderValues={fEsc10}
-            label={"fEsc10"}
+            label="fEsc10"
             onChange={(x) => {
-              this.handleChange('fEsc10', x)
+              this.handleChange('fEsc10', x);
             }}
           />
         </div>
@@ -101,25 +101,25 @@ class SearchForm extends React.Component {
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={fStar10}
-            label={"fStar10"}
+            label="fStar10"
             onChange={(x) => {
-              this.handleChange('fStar10', x)
+              this.handleChange('fStar10', x);
             }}
           />
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={lX}
-            label={"lX"}
+            label="lX"
             onChange={(x) => {
-              this.handleChange('lX', x)
+              this.handleChange('lX', x);
             }}
           />
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={mTurn}
-            label={"mTurn"}
+            label="mTurn"
             onChange={(x) => {
-              this.handleChange('mTurn', x)
+              this.handleChange('mTurn', x);
             }}
           />
         </div>
@@ -127,25 +127,25 @@ class SearchForm extends React.Component {
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={tStar}
-            label={"tStar"}
+            label="tStar"
             onChange={(x) => {
-              this.handleChange('tStar', x)
+              this.handleChange('tStar', x);
             }}
           />
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={sigma8}
-            label={"sigma8"}
+            label="sigma8"
             onChange={(x) => {
-              this.handleChange('sigma8', x)
+              this.handleChange('sigma8', x);
             }}
           />
           <RangeParameterInputContainer
             sliderDomain={[100, 600]}
             sliderValues={xRaySpecIndex}
-            label={"xRaySpecIndex"}
+            label="xRaySpecIndex"
             onChange={(x) => {
-              this.handleChange('xRaySpecIndex', x)
+              this.handleChange('xRaySpecIndex', x);
             }}
           />
         </div>
@@ -155,9 +155,9 @@ class SearchForm extends React.Component {
     // todo labels
     const FilesCheckboxes = () => (
       <CheckboxContainer
-        title={'Download files'}
+        title="Download files"
         labels={[
-          'coeval_kZ', 'coeval_PS_z'
+          'coeval_kZ', 'coeval_PS_z',
         ]}
         checks={files}
         onChange={this.handleCheckboxChange}
@@ -165,8 +165,12 @@ class SearchForm extends React.Component {
     );
 
     const SubmitButton = () => (
-      <button type="submit" className="btn btn-primary"
-              disabled={isSubmitting}>Download
+      <button
+        type="submit"
+        className="btn btn-primary"
+        disabled={isSubmitting}
+      >
+        Download
       </button>
     );
 

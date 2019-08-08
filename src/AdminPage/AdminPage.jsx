@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {userService} from '@/_services';
-import Switch from "react-switch";
+import Switch from 'react-switch';
 import ReactTable from 'react-table';
 import Checkbox from 'react-simple-checkbox';
+import {userService} from '@/_services';
 
 class AdminPage extends React.Component {
   constructor(props) {
@@ -11,60 +11,66 @@ class AdminPage extends React.Component {
 
     this.state = {
       users: [],
-      submitting: false
+      submitting: false,
     };
 
     this.tableColumns = [{
       Header: 'First name',
-      accessor: 'firstName'
+      accessor: 'firstName',
     }, {
       Header: 'Last name',
-      accessor: 'lastName'
+      accessor: 'lastName',
     }, {
       Header: 'username',
-      accessor: 'username'
+      accessor: 'username',
     }, {
       Header: 'email',
-      accessor: 'email'
+      accessor: 'email',
     }, {
       Header: 'ID',
-      accessor: 'id'
+      accessor: 'id',
     }, {
       Header: 'Role',
-      accessor: 'role'
+      accessor: 'role',
     }, {
       Header: 'Verified ?',
       accessor: 'verified',
-      Cell: x => <Checkbox
-        className={"centered"}  // todo
-        size={2}
-        tickSize={3}
-        checked={this.state.users[x.index].verified}
-      />
+      Cell: x => (
+        <Checkbox
+          className="centered" // todo
+          size={2}
+          tickSize={3}
+          checked={this.state.users[x.index].verified}
+        />
+      ),
     }, {
       Header: 'Granted ?',
       accessor: 'granted',
-      Cell: x => <Switch
-        className={"centered"}  // todo
-        onChange={this.toggleGrantedSwitch.bind(this, x.index)}
-        checked={this.state.users[x.index].granted}
-        disabled={this.state.submitting}
-      />
+      Cell: x => (
+        <Switch
+          className="centered" // todo
+          onChange={this.toggleGrantedSwitch.bind(this, x.index)}
+          checked={this.state.users[x.index].granted}
+          disabled={this.state.submitting}
+        />
+      ),
     }, {
       Header: 'Blocked ?',
       accessor: 'blocked',
-      Cell: x => <Switch
-        className={"centered"}  // todo
-        onChange={this.toggleBlockedSwitch.bind(this, x.index)}
-        checked={this.state.users[x.index].blocked}
-        disabled={this.state.submitting}
-      />
+      Cell: x => (
+        <Switch
+          className="centered" // todo
+          onChange={this.toggleBlockedSwitch.bind(this, x.index)}
+          checked={this.state.users[x.index].blocked}
+          disabled={this.state.submitting}
+        />
+      ),
     }];
   }
 
   updateBackendUser(user) {
     this.setState({
-      submitting: true
+      submitting: true,
     });
 
     console.log('updating...');
@@ -81,22 +87,22 @@ class AdminPage extends React.Component {
   }
 
   setUserProperty(userIndex, property, value) {
-    let users = [...this.state.users];  // get status
-    let user = users[userIndex];
+    const users = [...this.state.users]; // get status
+    const user = users[userIndex];
     const oldProperty = user[property];
-    user[property] = value;  // set
+    user[property] = value; // set
 
     this.updateBackendUser(user)
       .catch((x) => {
-        user[property] = oldProperty;  // undo-set
+        user[property] = oldProperty; // undo-set
         alert(x);
       })
       .finally(() => {
         this.setState({
-          users: users,
-          submitting: false
-        })
-      })
+          users,
+          submitting: false,
+        });
+      });
   }
 
   componentDidMount() {

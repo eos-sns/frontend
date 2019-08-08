@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom'
+import {Route} from 'react-router-dom';
 
 class ReactRedirect extends React.Component {
   constructor(props) {
@@ -9,10 +9,13 @@ class ReactRedirect extends React.Component {
   render() {
     const nextUrl = this.props.src;
     return (
-      <Route path='/jupyter' component={() => {
-        window.location.href = nextUrl;
-        return null;
-      }}/>
+      <Route
+        path="/jupyter"
+        component={() => {
+          window.location.href = nextUrl;
+          return null;
+        }}
+      />
     );
   }
 }

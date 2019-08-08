@@ -1,8 +1,8 @@
 import React from 'react';
-import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
-import {Handle, SliderRail, Tick, Track} from "../slider";
-import Ticks from "react-compound-slider/Ticks/Ticks";
-import {NumberInputContainer} from "@/_components/inputs";
+import {Handles, Rail, Slider, Tracks,} from 'react-compound-slider';
+import Ticks from 'react-compound-slider/Ticks/Ticks';
+import {Handle, SliderRail, Tick, Track,} from '.';
+import {NumberInputContainer} from '@/_components/inputs';
 
 const SLIDER_STYLE = {
   position: 'relative',
@@ -10,7 +10,7 @@ const SLIDER_STYLE = {
   touchAction: 'none',
 };
 const DIV_STYLE = {
-  height: 150, width: '100%'
+  height: 150, width: '100%',
 };
 
 class RangeNumericSlider extends React.Component {
@@ -19,15 +19,15 @@ class RangeNumericSlider extends React.Component {
     onChange(values);
   };
 
-  onSliderUpdate = update => {
+  onSliderUpdate = (update) => {
     this.setState({
-      update
-    })
+      update,
+    });
   };
 
-  onSliderChange = values => {
+  onSliderChange = (values) => {
     this.setState({
-      values
+      values,
     });
   };
 
@@ -38,7 +38,7 @@ class RangeNumericSlider extends React.Component {
     const newValues = [valueAsNumber, values[1]];
     this.setState({
       values: newValues.slice(),
-      update: newValues.slice()
+      update: newValues.slice(),
     });
     this.forceUpdate();
   };
@@ -49,7 +49,7 @@ class RangeNumericSlider extends React.Component {
     const newValues = [values[0], valueAsNumber];
     this.setState({
       values: newValues.slice(),
-      update: newValues.slice()
+      update: newValues.slice(),
     });
     this.forceUpdate();
     this.sendDataToParent();
@@ -58,24 +58,28 @@ class RangeNumericSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    const {label, domain, defaultValues, onChange} = props;
+    const {
+      label, domain, defaultValues, onChange,
+    } = props;
 
     this.state = {
-      label: label,
+      label,
       values: defaultValues.slice(),
       update: defaultValues.slice(),
-      domain: domain,  // const
-      onChange
-    }
+      domain, // const
+      onChange,
+    };
   }
 
   render() {
-    const {label, values, update, domain} = this.state;
-    this.sendDataToParent();  // update parent
+    const {
+      label, values, update, domain,
+    } = this.state;
+    this.sendDataToParent(); // update parent
 
     const NumberInputMin = () => (
       <NumberInputContainer
-        label={"min:"}
+        label="min:"
         minValue={domain[0]}
         maxValue={domain[1]}
         value={update[0]}
@@ -86,7 +90,7 @@ class RangeNumericSlider extends React.Component {
 
     const NumberInputMax = () => (
       <NumberInputContainer
-        label={"max:"}
+        label="max:"
         minValue={domain[0]}
         maxValue={domain[1]}
         value={update[1]}
@@ -153,7 +157,7 @@ class RangeNumericSlider extends React.Component {
           </Ticks>
         </Slider>
       </div>
-    )
+    );
   }
 }
 

@@ -17,6 +17,11 @@ import {LoginPage} from '../LoginPage';
 import {RegisterPage} from '../RegisterPage';
 
 class App extends React.Component {
+  static logout() {
+    userService.logout();
+    history.push('/login');
+  }
+
   constructor(props) {
     super(props);
 
@@ -27,19 +32,14 @@ class App extends React.Component {
 
     this.state = {
       currentUser: null,
-      isAdmin: false
+      isAdmin: false,
     };
-  }
-
-  static logout() {
-    userService.logout();
-    history.push('/login');
   }
 
   componentDidMount() {
     userModel.currentUser.subscribe(x => this.setState({
       currentUser: x,
-      isAdmin: x && x.role === Role.Admin
+      isAdmin: x && x.role === Role.Admin,
     }));
   }
 
@@ -49,32 +49,46 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          {currentUser &&
+          {currentUser
+          && (
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <div className="navbar-nav">
               <Link to="/" className="nav-item nav-link">Home</Link>
               <Link to="/download" className="nav-item nav-link">Download</Link>
               <Link to="/jupyter" className="nav-item nav-link">Jupyter</Link>
-              {isAdmin &&
-              <Link to="/admin" className="nav-item nav-link">Admin</Link>}
-              <a onClick={App.logout}
-                 className="nav-item nav-link">Logout</a>
+              {isAdmin
+              && <Link to="/admin" className="nav-item nav-link">Admin</Link>}
+              <a
+                onClick={App.logout}
+                className="nav-item nav-link"
+              >
+                Logout
+              </a>
             </div>
           </nav>
+          )
           }
           <div className="jumbotron">
             <div className="container">
               <div>
-                {alert.message &&
+                {alert.message
+                && (
                 <div
-                  className={`alert ${alert.type}`}>{alert.message}</div>
+                  className={`alert ${alert.type}`}
+                >
+                  {alert.message}
+                </div>
+                )
                 }
                 <PrivateRoute exact path="/jupyter" component={JupyterPage}/>
                 <PrivateRoute exact path="/download" component={DownloadPage}/>
                 <PrivateRoute exact path="/" component={HomePage}/>
 
-                <PrivateRoute path="/admin" roles={[Role.Admin]}
-                              component={AdminPage}/>
+                <PrivateRoute
+                  path="/admin"
+                  roles={[Role.Admin]}
+                  component={AdminPage}
+                />
                 <Route path="/login" component={LoginPage}/>
                 <Route path="/register" component={RegisterPage}/>
               </div>
@@ -89,7 +103,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   const {alert} = state;
   return {
-    alert
+    alert,
   };
 }
 

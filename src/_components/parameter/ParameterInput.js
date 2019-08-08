@@ -1,5 +1,5 @@
 import React from 'react';
-import {ErrorMessage, Field} from "formik";
+import {ErrorMessage, Field} from 'formik';
 
 // todo show error
 // todo show defaultValue
@@ -16,6 +16,6 @@ ParameterInput.propTypes = {
   type: PropTypes.string,
   _id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-};*/
+}; */
 
 export {ParameterInput};

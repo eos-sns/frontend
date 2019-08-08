@@ -1,23 +1,29 @@
 import React from 'react';
-import NumericInput from "react-numeric-input";
+import NumericInput from 'react-numeric-input';
 
 class NumberInputContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    const {label, minValue, maxValue, value, onChange} = props;
+    const {
+      label, minValue, maxValue, value, onChange,
+    } = props;
 
-    this.state = {label, minValue, maxValue, value, onChange};
+    this.state = {
+      label, minValue, maxValue, value, onChange,
+    };
   }
 
   render() {
-    const {label, minValue, maxValue, value, onChange} = this.state;
+    const {
+      label, minValue, maxValue, value, onChange,
+    } = this.state;
 
     // todo inline
     return (
       <React.Fragment>
         <div className="sameRow">
-          <p style={{marginRight: "5%"}}>{label}</p>
+          <p style={{marginRight: '5%'}}>{label}</p>
           <NumericInput
             min={minValue}
             max={maxValue}

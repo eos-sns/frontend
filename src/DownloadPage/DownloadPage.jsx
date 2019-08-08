@@ -1,48 +1,54 @@
 import React from 'react';
 
-import {SearchForm} from "@/_components";
-import {searchService} from "@/_services/search.service";
+import {SearchForm} from '@/_components';
+import {searchService} from '@/_services/search.service';
 
 class DownloadPage extends React.Component {
   setSubmitting = (isSubmitting) => {
     this.setState({
-      isSubmitting
+      isSubmitting,
     });
   };
+
   setStatus = (status) => {
     this.setState({
-      'status': status
-    })
+      status,
+    });
   };
+
   onAfterSubmit = (res, isErr) => {
     this.setSubmitting(false);
     let msg = res.status;
     if (msg === undefined) {
       msg = 'Server error';
-    } else {
+    }
+    else {
       msg = msg.toString();
     }
 
     let resCode = res.code;
     if (resCode === undefined) {
       resCode = -1;
-    } else {
+    }
+    else {
       resCode = parseInt(resCode.toString());
     }
 
     isErr = (isErr || resCode !== 200);
     if (isErr) {
       this.setStatus({
-        'err': 'Error. ' + msg,
-        'email': null
+        err: `Error. ${msg}`,
+        email: null,
       });
-    } else {
+    }
+    else {
       this.setStatus({
-        'msg': msg,
-        'email': res.email.toString()
+        msg,
+        email: res.email.toString(),
       });
     }
   };
+
   onSubmit = (data) => {
     this.setSubmitting(true);
 
@@ -52,7 +58,8 @@ class DownloadPage extends React.Component {
       },
       (err) => {
         this.onAfterSubmit(err, true);
-      });
+      },
+    );
   };
 
   constructor(props) {
@@ -60,22 +67,31 @@ class DownloadPage extends React.Component {
 
     this.state = {
       isSubmitting: false,
-      status: {}
-    }
+      status: {},
+    };
   }
 
   render() {
     const {status, isSubmitting} = this.state;
     const StatusMessage = () => (
       <div>
-        {status && status.err &&
-        <div className={'alert alert-danger'}>{status.err}</div>
+        {status && status.err
+        && <div className="alert alert-danger">{status.err}</div>
         }
-        {status && status.msg && status.email &&
-        <div className={'alert alert-success'}>
-          <p>{status.msg}. An email has been sent
-            to <strong>{status.email}</strong> with further instructions</p>
+        {status && status.msg && status.email
+        && (
+          <div className="alert alert-success">
+            <p>
+              {status.msg}
+              . An email has been sent
+              to
+              {' '}
+              <strong>{status.email}</strong>
+              {' '}
+              with further instructions
+            </p>
         </div>
+        )
         }
       </div>
     );
@@ -83,7 +99,7 @@ class DownloadPage extends React.Component {
     return (
       <div>
         <SearchForm
-          title={'Parameters'}
+          title="Parameters"
           onSubmit={this.onSubmit}
           isSubmitting={isSubmitting}
         />

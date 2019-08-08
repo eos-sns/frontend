@@ -1,23 +1,23 @@
 import React from 'react';
 import {Checkbox} from './Checkbox';
-import {TeX} from "@/_components/labels";
+import {TeX} from '@/_components/labels';
 
 /**
  * Converts list of labels to objects with name, key, label
  */
 const label2Box = (label, index) => {
-  const _id = 'ch' + index;
+  const _id = `ch${index}`;
   return {
-    label: label,
+    label,
     name: _id,
-    key: _id
-  }
+    key: _id,
+  };
 };
 
 class CheckboxContainer extends React.Component {
   sendStatus = () => {
     const {checkedItems, checkboxes, onChange} = this.state;
-    let checksState = [];  // array of bool
+    const checksState = []; // array of bool
     checkboxes.forEach((x) => {
       const isChecked = (checkedItems[x.name] || false);
       checksState.push(isChecked);
@@ -29,10 +29,12 @@ class CheckboxContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    const {title, labels, onChange, checks} = props;
+    const {
+      title, labels, onChange, checks,
+    } = props;
 
     const checkboxes = labels.map(label2Box);
-    let checkedItems = {};
+    const checkedItems = {};
 
     for (let i = 0; i < checkboxes.length; i++) {
       const item = checkboxes[i].name;
@@ -41,9 +43,9 @@ class CheckboxContainer extends React.Component {
 
     this.state = {
       title,
-      checkedItems,  // name -> checked
-      checkboxes,  // todo: this is const
-      onChange
+      checkedItems, // name -> checked
+      checkboxes, // todo: this is const
+      onChange,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -55,7 +57,7 @@ class CheckboxContainer extends React.Component {
     checkedItems[item] = e.target.checked;
 
     this.setState({
-      checkedItems
+      checkedItems,
     });
 
     this.sendStatus();
@@ -67,13 +69,15 @@ class CheckboxContainer extends React.Component {
     return (
       <React.Fragment>
         <h3>{title}</h3>
-        <div className={"sameRow"}>
+        <div className="sameRow">
           {
             checkboxes.map(item => (
               <div key={item.key}>
-                <Checkbox name={item.name}
-                          checked={checkedItems[item.name]}
-                          onChange={this.handleChange}/>
+                <Checkbox
+                  name={item.name}
+                  checked={checkedItems[item.name]}
+                  onChange={this.handleChange}
+                />
                 <label htmlFor={item.name}><TeX label={item.label}/></label>
               </div>
             ))

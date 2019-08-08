@@ -1,8 +1,8 @@
 import React from 'react';
 
+import config from 'config';
 import {userModel, userService} from '@/_services';
 import {ReactRedirect} from '@/_components';
-import config from 'config';
 
 class JupyterPage extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class JupyterPage extends React.Component {
 
     this.state = {
       currentUser: userModel.currentUserValue,
-      userFromApi: null
+      userFromApi: null,
     };
   }
 
@@ -18,7 +18,7 @@ class JupyterPage extends React.Component {
     const currentUser = userModel.currentUserValue;
 
     this.setState({
-      currentUser: currentUser
+      currentUser,
     });
 
     userService.getById(currentUser._id).then(userFromApi => this.setState({userFromApi}));
@@ -30,9 +30,8 @@ class JupyterPage extends React.Component {
       <ReactRedirect src={config.jupyterUrl}/>
     );
 
-    const NotGrantedComponent = () => {
-      return <h2>Sorry, you've NOT been granted JupyterHub access</h2>
-    };
+    const NotGrantedComponent = () => <h2>Sorry, you've NOT been granted
+      JupyterHub access</h2>;
 
     return (
       <div>

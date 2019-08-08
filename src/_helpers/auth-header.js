@@ -5,7 +5,6 @@ export function authHeader() {
   const currentUser = userModel.currentUserValue;
   if (currentUser && currentUser.token) {
     return {Authorization: `Bearer ${currentUser.token}`};
-  } else {
-    return {};
   }
+  return {};
 }

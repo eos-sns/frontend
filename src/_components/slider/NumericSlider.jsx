@@ -1,7 +1,7 @@
 import React from 'react';
-import {Handles, Rail, Slider, Tracks} from "react-compound-slider";
-import {Handle, SliderRail, Track} from "../slider";
-import {NumberInputContainer} from "@/_components/inputs";
+import {Handles, Rail, Slider, Tracks,} from 'react-compound-slider';
+import {Handle, SliderRail, Track} from '.';
+import {NumberInputContainer} from '@/_components/inputs';
 
 const SLIDER_STYLE = {
   position: 'relative',
@@ -10,7 +10,7 @@ const SLIDER_STYLE = {
 };
 const DIV_STYLE = {
   height: 120,
-  width: '100%'
+  width: '100%',
 };
 
 class NumericSlider extends React.Component {
@@ -21,17 +21,17 @@ class NumericSlider extends React.Component {
 
   onNewValue = (newValue) => {
     this.setState({
-      values: newValue,  // to save value
-      update: newValue  // to update slider
+      values: newValue, // to save value
+      update: newValue, // to update slider
     });
   };
 
-  onSliderUpdate = update => {
-    this.setState({update})
+  onSliderUpdate = (update) => {
+    this.setState({update});
   };
 
-  onSliderChange = values => {
-    this.setState({values})
+  onSliderChange = (values) => {
+    this.setState({values});
   };
 
   onNumericInputChange = (valueAsNumber, valueAsString, inputElement) => {
@@ -48,18 +48,18 @@ class NumericSlider extends React.Component {
     this.state = {
       values: defaultValues.slice(),
       update: defaultValues.slice(),
-      domain: domain,  // todo this is const
-      onChange
-    }
+      domain, // todo this is const
+      onChange,
+    };
   }
 
   render() {
     const {values, update, domain} = this.state;
-    this.sendDataToParent();  // update parent
+    this.sendDataToParent(); // update parent
 
     const NumberInput = () => (
       <NumberInputContainer
-        label={"value:"}
+        label="value:"
         minValue={domain[0]}
         maxValue={domain[1]}
         value={update[0]}
@@ -114,7 +114,7 @@ class NumericSlider extends React.Component {
           </Tracks>
         </Slider>
       </div>
-    )
+    );
   }
 }
 

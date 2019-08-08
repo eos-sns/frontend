@@ -1,23 +1,27 @@
 import React from 'react';
-import {RangeNumericSlider} from "../slider";
-import {TeX} from "@/_components/labels";
+import {RangeNumericSlider} from '../slider';
+import {TeX} from '@/_components/labels';
 
 class RangeParameterInputContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    const {sliderDomain, sliderValues, label, onChange} = props;
+    const {
+      sliderDomain, sliderValues, label, onChange,
+    } = props;
 
     this.state = {
       sliderDomain,
       sliderValues,
       label,
-      onChange
+      onChange,
     };
   }
 
   render() {
-    const {sliderDomain, sliderValues, label, onChange} = this.state;
+    const {
+      sliderDomain, sliderValues, label, onChange,
+    } = this.state;
 
     return (
       <React.Fragment>

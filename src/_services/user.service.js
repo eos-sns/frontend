@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import config from 'config';
 import {handleResponse} from '../_helpers';
 import {userModel} from './user.model';
@@ -9,20 +10,20 @@ export const userService = {
   register,
   getAll,
   getById,
-  update
+  update,
 };
 
 function login(username, password) {
   const requestOptions = {
     method: 'POST',
     headers: headers._getDefaultHeaders(),
-    body: JSON.stringify({username, password})
+    body: JSON.stringify({username, password}),
   };
 
   return fetch(`${config.usersApiUrl}/authenticate`, requestOptions)
     .then(handleResponse)
-    .then(user => {
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
+    .then((user) => {
+      // store details and jwt in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify(user));
       userModel.currentUserSubject.next(user);
       return user;
@@ -39,7 +40,7 @@ function register(user) {
   const requestOptions = {
     method: 'POST',
     headers: headers._getAuthHeaders(),
-    body: JSON.stringify(user)
+    body: JSON.stringify(user),
   };
 
   return fetch(`${config.usersApiUrl}/register`, requestOptions).then(handleResponse);
@@ -59,7 +60,7 @@ function update(user) {
   const requestOptions = {
     method: 'PUT',
     headers: headers._getAuthHeaders(),
-    body: JSON.stringify(user)
+    body: JSON.stringify(user),
   };
 
   return fetch(`${config.usersApiUrl}/${user.id}`, requestOptions).then(handleResponse);

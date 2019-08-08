@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react'
-import PropTypes from 'prop-types'
+import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 
 // *******************************************************
 // RAIL
@@ -30,7 +30,7 @@ export function SliderRail({getRailProps}) {
       <div style={railOuterStyle} {...getRailProps()} />
       <div style={railInnerStyle}/>
     </Fragment>
-  )
+  );
 }
 
 SliderRail.propTypes = {
@@ -81,7 +81,7 @@ export function Handle({
         }}
       />
     </Fragment>
-  )
+  );
 }
 
 Handle.propTypes = {
@@ -128,7 +128,7 @@ export function KeyboardHandle({
       }}
       {...getHandleProps(id)}
     />
-  )
+  );
 }
 
 KeyboardHandle.propTypes = {
@@ -149,7 +149,9 @@ KeyboardHandle.defaultProps = {
 // *******************************************************
 // TRACK COMPONENT
 // *******************************************************
-export function Track({source, target, getTrackProps, disabled}) {
+export function Track({
+                        source, target, getTrackProps, disabled,
+                      }) {
   return (
     <div
       style={{
@@ -165,7 +167,7 @@ export function Track({source, target, getTrackProps, disabled}) {
       }}
       {...getTrackProps()}
     />
-  )
+  );
 }
 
 Track.propTypes = {
@@ -217,7 +219,7 @@ export function Tick({tick, count, format}) {
         {format(tick.value)}
       </div>
     </div>
-  )
+  );
 }
 
 Tick.propTypes = {
