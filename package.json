@@ -7,8 +7,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production",
-    "start-dev": "webpack-dev-server --open google-chrome",
+    "dev-build": "webpack --mode production --config ./webpack.config.dev.js",
+    "dev-start": "webpack-dev-server --open google-chrome --config ./webpack.config.dev.js",
+    "prod-build": "webpack --mode production --config ./webpack.config.prod.js",
+    "prod-install": "cd ./dist && yes | cp -r * /var/www/html/",
     "depcheck": "node ./node_modules/depcheck/bin/depcheck.js"
   },
   "dependencies": {
@@ -36,6 +38,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "rxjs": "^6.3.3",
+    "webpack-merge": "^4.2.1",
     "yup": "^0.26.10"
   },
   "devDependencies": {
