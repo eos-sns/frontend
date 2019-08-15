@@ -1,6 +1,6 @@
 import React from 'react';
 import { NumericSlider } from '../slider';
-import { TeX } from '@/_components/labels';
+import {ParameterTitle} from "./ParameterTitle";
 
 class ParameterInputContainer extends React.Component {
   constructor(props) {
@@ -20,13 +20,14 @@ class ParameterInputContainer extends React.Component {
 
   render() {
     const {
-      sliderDomain, sliderValues, label, onChange,
+      sliderDomain, sliderValues, onChange,
     } = this.state;
+    const { label, description } = this.props;
 
     return (
       <React.Fragment>
         <div>
-          <h4><TeX label={label} /></h4>
+          <ParameterTitle label={label} description={description} />
           <NumericSlider
             domain={sliderDomain}
             defaultValues={sliderValues}

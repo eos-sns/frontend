@@ -7,14 +7,6 @@ import { CheckboxContainer } from '@/_components/checkbox';
 
 // todo validationSchema
 class SearchForm extends React.Component {
-  handleChange = (key, val) => {
-    this.state[key] = val;
-  };
-
-  handleCheckboxChange = (data) => {
-    this.state.files = data;
-  };
-
   constructor(props) {
     super(props);
 
@@ -37,6 +29,14 @@ class SearchForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleChange = (key, val) => {
+    this.state[key] = val;
+  };
+
+  handleCheckboxChange = (data) => {
+    this.state.files = data;
+  };
 
   handleSubmit(event) {
     const {
@@ -70,12 +70,15 @@ class SearchForm extends React.Component {
 
     const ParameterInputs = () => (
       <div>
-        <h3>{title}</h3>
+        <h3>
+          {title}
+        </h3>
         <div className="sameRow">
           <RangeParameterInputContainer
             sliderDomain={[-1.0, 0.5]}
             sliderValues={alphaEsc}
             label={'\\alpha \\, Esc'}
+            description={'a<br>b'}
             onChange={(x) => {
               this.handleChange('alphaEsc', x);
             }}
@@ -84,6 +87,7 @@ class SearchForm extends React.Component {
             sliderDomain={[-0.5, 1.0]}
             sliderValues={alphaStar}
             label={'\\alpha \\, Star'}
+            description="..."
             onChange={(x) => {
               this.handleChange('alphaStar', x);
             }}
@@ -92,6 +96,7 @@ class SearchForm extends React.Component {
             sliderDomain={[0.0, 0.5]}
             sliderValues={fEsc10}
             label="fEsc10"
+            description="..."
             onChange={(x) => {
               this.handleChange('fEsc10', x);
             }}
@@ -102,6 +107,7 @@ class SearchForm extends React.Component {
             sliderDomain={[0.0, 0.2]}
             sliderValues={fStar10}
             label="fStar10"
+            description="..."
             onChange={(x) => {
               this.handleChange('fStar10', x);
             }}
@@ -110,6 +116,7 @@ class SearchForm extends React.Component {
             sliderDomain={[38, 42]}
             sliderValues={lX}
             label="lX"
+            description="..."
             onChange={(x) => {
               this.handleChange('lX', x);
             }}
@@ -118,6 +125,7 @@ class SearchForm extends React.Component {
             sliderDomain={[8, 10]}
             sliderValues={mTurn}
             label="mTurn"
+            description="..."
             onChange={(x) => {
               this.handleChange('mTurn', x);
             }}
@@ -128,6 +136,7 @@ class SearchForm extends React.Component {
             sliderDomain={[0.1, 1]}
             sliderValues={tStar}
             label="tStar"
+            description="..."
             onChange={(x) => {
               this.handleChange('tStar', x);
             }}
@@ -136,6 +145,7 @@ class SearchForm extends React.Component {
             sliderDomain={[200, 300]}
             sliderValues={sigma8}
             label="sigma8"
+            description="..."
             onChange={(x) => {
               this.handleChange('sigma8', x);
             }}
@@ -144,6 +154,7 @@ class SearchForm extends React.Component {
             sliderDomain={[0.1, 1.5]}
             sliderValues={xRaySpecIndex}
             label="xRaySpecIndex"
+            description="..."
             onChange={(x) => {
               this.handleChange('xRaySpecIndex', x);
             }}
@@ -157,7 +168,7 @@ class SearchForm extends React.Component {
       <CheckboxContainer
         title="Download files"
         labels={[
-          'coeval_kZ', 'coeval_PS_z'
+          'coeval_kZ', 'coeval_PS_z',
         ]}
         checks={files}
         onChange={this.handleCheckboxChange}
