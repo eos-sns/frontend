@@ -51,16 +51,16 @@ class App extends React.Component {
         <div>
           {currentUser
           && (
-          <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <nav className="navbar navbar-expand navbar-dark bg-banner">
             <div className="navbar-nav">
-              <Link to="/" className="nav-item nav-link">Home</Link>
-              <Link to="/download" className="nav-item nav-link">Download</Link>
-              <Link to="/jupyter" className="nav-item nav-link">Jupyter</Link>
+              <Link to="/" className="nav-item nav-link nav-highlight">Home</Link>
+              <Link to="/download" className="nav-item nav-link nav-highlight">Download</Link>
+              <Link to="/jupyter" className="nav-item nav-link nav-highlight">Jupyter</Link>
               {isAdmin
-              && <Link to="/admin" className="nav-item nav-link">Admin</Link>}
+              && <Link to="/admin" className="nav-item nav-link nav-highlight">Admin</Link>}
               <a
                 onClick={App.logout}
-                className="nav-item nav-link"
+                className="nav-item nav-link nav-highlight"
               >
                 Logout
               </a>
