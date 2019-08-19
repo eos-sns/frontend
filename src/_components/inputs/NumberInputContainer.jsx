@@ -27,6 +27,7 @@ class NumberInputContainer extends React.Component {
           <NumericInput
             min={minValue}
             max={maxValue}
+            step={0.01}
             value={value}
             onChange={onChange}
             className="form-control"

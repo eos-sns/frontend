@@ -13,15 +13,15 @@ class SearchForm extends React.Component {
     const { onSubmit, isSubmitting } = props;
 
     this.state = {
-      alphaEsc: [-1.0, 0.5],
-      alphaStar: [-0.4],
+      alphaEsc: [-0.5],
+      alphaStar: [0.5],
       fEsc10: [0.1],
-      fStar10: [0.0, 0.2],
-      lX: [38, 42],
-      mTurn: [8, 10],
-      tStar: [0.1, 1],
-      sigma8: [200, 300],
-      xRaySpecIndex: [0.1, 1.5],
+      fStar10: [0.05],
+      lX: [39, 41], // todo
+      mTurn: [5], // * 10 ^ 8
+      tStar: [0.5],
+      sigma8: [200, 300], // todo
+      xRaySpecIndex: [0.1, 1.5], // todo
       files: [false, false],
       isSubmitting,
       onSubmit,
@@ -74,10 +74,10 @@ class SearchForm extends React.Component {
           {title}
         </h3>
         <div className="sameRow">
-          <RangeParameterInputContainer
+          <ParameterInputContainer
             sliderDomain={[-1.0, 0.5]}
             sliderValues={alphaEsc}
-            label={'\\alpha \\, Esc'}
+            label={'\\alpha_{esc}'}
             description={'a<br>b'}
             onChange={(x) => {
               this.handleChange('alphaEsc', x);
@@ -86,16 +86,16 @@ class SearchForm extends React.Component {
           <ParameterInputContainer
             sliderDomain={[-0.5, 1.0]}
             sliderValues={alphaStar}
-            label={'\\alpha \\, Star'}
+            label={'\\alpha_{*}'}
             description="..."
             onChange={(x) => {
               this.handleChange('alphaStar', x);
             }}
           />
           <ParameterInputContainer
-            sliderDomain={[0.0, 0.5]}
+            sliderDomain={[0.001, 1]}
             sliderValues={fEsc10}
-            label="fEsc10"
+            label={'f_{esc,10}'}
             description="..."
             onChange={(x) => {
               this.handleChange('fEsc10', x);
@@ -103,28 +103,28 @@ class SearchForm extends React.Component {
           />
         </div>
         <div className="sameRow">
-          <RangeParameterInputContainer
-            sliderDomain={[0.0, 0.2]}
+          <ParameterInputContainer
+            sliderDomain={[0.001, 1]}
             sliderValues={fStar10}
-            label="fStar10"
+            label={'f_{*,10}'}
             description="..."
             onChange={(x) => {
               this.handleChange('fStar10', x);
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[38, 42]}
+            sliderDomain={[38, 42]} // todo
             sliderValues={lX}
-            label="lX"
+            label={'lX'}
             description="..."
             onChange={(x) => {
               this.handleChange('lX', x);
             }}
           />
-          <RangeParameterInputContainer
-            sliderDomain={[8, 10]}
+          <ParameterInputContainer
+            sliderDomain={[1, 100]}
             sliderValues={mTurn}
-            label="mTurn"
+            label={'M_{turn}'}
             description="..."
             onChange={(x) => {
               this.handleChange('mTurn', x);
@@ -132,28 +132,28 @@ class SearchForm extends React.Component {
           />
         </div>
         <div className="sameRow">
-          <RangeParameterInputContainer
-            sliderDomain={[0.1, 1]}
+          <ParameterInputContainer
+            sliderDomain={[0, 1]}
             sliderValues={tStar}
-            label="tStar"
+            label={'t_{*}'}
             description="..."
             onChange={(x) => {
               this.handleChange('tStar', x);
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[200, 300]}
+            sliderDomain={[200, 300]} // todo
             sliderValues={sigma8}
-            label="sigma8"
+            label={'\\sigma_{8}'}
             description="..."
             onChange={(x) => {
               this.handleChange('sigma8', x);
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[0.1, 1.5]}
+            sliderDomain={[0.1, 1.5]} // todo
             sliderValues={xRaySpecIndex}
-            label="xRaySpecIndex"
+            label={'xRaySpecIndex'}
             description="..."
             onChange={(x) => {
               this.handleChange('xRaySpecIndex', x);

@@ -76,7 +76,7 @@ class NumericSlider extends React.Component {
         {<br />}
         <Slider
           mode={1}
-          step={0.1}
+          step={0.01}
           domain={domain}
           rootStyle={SLIDER_STYLE}
           onUpdate={this.onSliderUpdate}
