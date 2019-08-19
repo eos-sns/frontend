@@ -46,6 +46,18 @@ class App extends React.Component {
   render() {
     const { currentUser, isAdmin } = this.state;
     const { alert } = this.props;
+    const Footer = () => (
+      <div className="footerContainer">
+        ©&nbsp;
+        <a href="mailto:eos.cosmosns@gmail.com">Cosmology Group at SNS</a>.
+        All Rights Reserved.
+        Developed by&nbsp;
+        <a href="https://github.com/sirfoga">Stefano Fogarollo</a>.
+        For any questions send email to<span>&nbsp;</span>
+          <a href="mailto:eos.cosmosns[at]gmail.com">eos.cosmosns[at]gmail.com</a>
+      </div>
+    );
+
     return (
       <Router history={history}>
         <div>
@@ -94,9 +106,7 @@ class App extends React.Component {
               </div>
             </div>
           </div>
-          <div>
-            hello world
-          </div>
+          <Footer />
         </div>
       </Router>
     );
