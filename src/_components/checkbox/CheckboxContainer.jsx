@@ -77,7 +77,7 @@ class CheckboxContainer extends React.Component {
                   name={item.name}
                   checked={checkedItems[item.name]}
                   onChange={this.handleChange}
-                />
+                />&nbsp;
                 <label htmlFor={item.name}><TeX label={item.label} /></label>
               </div>
             ))

@@ -10,7 +10,6 @@ class HomePage extends React.Component {
     return (
       <div>
         <h1>Home</h1>
-        <p>Todo description of usage</p>
         <div>
           Go to the
           {' '}
