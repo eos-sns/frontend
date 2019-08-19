@@ -68,17 +68,26 @@ class SearchForm extends React.Component {
       xRaySpecIndex, files,
     } = this.state;
 
+    const Link2Paper = () => (
+      <h6>
+        For more information please take a look at
+        {' '}
+        <a href="https://arxiv.org/pdf/1809.08995.pdf">Park et al. 2019</a>
+      </h6>
+    );
+
     const ParameterInputs = () => (
       <div>
         <h3>
           {title}
         </h3>
+        <Link2Paper/>
         <div className="sameRow">
           <ParameterInputContainer
             sliderDomain={[-1.0, 0.5]}
             sliderValues={alphaEsc}
             label={'\\alpha_{esc}'}
-            description={'a<br>b'}
+            description="The power law scaling with halo mass"
             onChange={(x) => {
               this.handleChange('alphaEsc', x);
             }}
@@ -87,7 +96,7 @@ class SearchForm extends React.Component {
             sliderDomain={[-0.5, 1.0]}
             sliderValues={alphaStar}
             label={'\\alpha_{*}'}
-            description="..."
+            description="The power-law scaling of f* with halo mass"
             onChange={(x) => {
               this.handleChange('alphaStar', x);
             }}
@@ -96,7 +105,7 @@ class SearchForm extends React.Component {
             sliderDomain={[0.001, 1]}
             sliderValues={fEsc10}
             label={'f_{esc,10}'}
-            description="..."
+            description="The normalization of the ionizing UV escape fraction of high-z galaxies"
             onChange={(x) => {
               this.handleChange('fEsc10', x);
             }}
@@ -107,7 +116,7 @@ class SearchForm extends React.Component {
             sliderDomain={[0.001, 1]}
             sliderValues={fStar10}
             label={'f_{*,10}'}
-            description="..."
+            description="The normalization  of  the  fraction of galactic gas in stars at high-z"
             onChange={(x) => {
               this.handleChange('fStar10', x);
             }}
@@ -115,7 +124,7 @@ class SearchForm extends React.Component {
           <RangeParameterInputContainer
             sliderDomain={[38, 42]} // todo
             sliderValues={lX}
-            label={'lX'}
+            label="lX"
             description="..."
             onChange={(x) => {
               this.handleChange('lX', x);
@@ -125,7 +134,7 @@ class SearchForm extends React.Component {
             sliderDomain={[1, 100]}
             sliderValues={mTurn}
             label={'M_{turn}'}
-            description="..."
+            description="The turnover halo mass below which the abundance of active star forming galaxies is exponentially suppressed"
             onChange={(x) => {
               this.handleChange('mTurn', x);
             }}
@@ -136,7 +145,7 @@ class SearchForm extends React.Component {
             sliderDomain={[0, 1]}
             sliderValues={tStar}
             label={'t_{*}'}
-            description="..."
+            description="The star formation time-scale taken as a fraction of the Hubble time"
             onChange={(x) => {
               this.handleChange('tStar', x);
             }}
@@ -153,7 +162,7 @@ class SearchForm extends React.Component {
           <RangeParameterInputContainer
             sliderDomain={[0.1, 1.5]} // todo
             sliderValues={xRaySpecIndex}
-            label={'xRaySpecIndex'}
+            label="xRaySpecIndex"
             description="..."
             onChange={(x) => {
               this.handleChange('xRaySpecIndex', x);
