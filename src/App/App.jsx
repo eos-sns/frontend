@@ -69,7 +69,7 @@ class App extends React.Component {
           <nav className="navbar navbar-expand navbar-dark bg-banner">
             <div className="navbar-nav">
               <Link to="/" className="nav-item nav-link nav-highlight">Home</Link>
-              <Link to="/download" className="nav-item nav-link nav-highlight">Download</Link>
+              <Link to="/search" className="nav-item nav-link nav-highlight">Download</Link>
               <Link to="/jupyter" className="nav-item nav-link nav-highlight">Jupyter</Link>
               {isAdmin
               && <Link to="/admin" className="nav-item nav-link nav-highlight">Admin</Link>}
@@ -103,7 +103,7 @@ class App extends React.Component {
                 />
                 <PrivateRoute
                   exact
-                  path="/download"
+                  path="/search"
                   roles={[Role.User, Role.Admin]} // has to be logged-in
                   component={DownloadPage}
                 />
