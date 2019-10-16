@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { userModel, userService } from '@/_services';
 import { SearchForm } from '@/_components';
 import { searchService } from '@/_services/search.service';
 
@@ -68,11 +69,23 @@ class DownloadPage extends React.Component {
     this.state = {
       isSubmitting: false,
       status: {},
+      currentUser: userModel.currentUserValue,
+      userFromApi: null,
     };
   }
 
+  componentDidMount() {
+    const currentUser = userModel.currentUserValue;
+
+    this.setState({
+      currentUser,
+    });
+
+    userService.getById(currentUser._id).then(userFromApi => this.setState({ userFromApi }));
+  }
+
   render() {
-    const { status, isSubmitting } = this.state;
+    const { status, isSubmitting, userFromApi } = this.state;
     const StatusMessage = () => (
       <div>
         {status && status.err
@@ -96,13 +109,24 @@ class DownloadPage extends React.Component {
       </div>
     );
 
+    const NotGrantedComponent = () => (
+      <h2>
+              Sorry, you've NOT been granted
+              downloads access
+      </h2>
+    );
+
     return (
       <div>
-        <SearchForm
-          title="Parameters"
-          onSubmit={this.onSubmit}
-          isSubmitting={isSubmitting}
-        />
+        {userFromApi && !userFromApi.blocked
+          ? (
+            <SearchForm
+              title="Parameters"
+              onSubmit={this.onSubmit}
+              isSubmitting={isSubmitting}
+            />
+          ) : (<NotGrantedComponent />)
+          }
         {<br />}
         <StatusMessage />
       </div>
