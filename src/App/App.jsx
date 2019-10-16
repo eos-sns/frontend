@@ -49,12 +49,15 @@ class App extends React.Component {
     const Footer = () => (
       <div className="footerContainer">
         ©&nbsp;
-        <a href="mailto:eos.cosmosns@gmail.com">Cosmology Group at SNS</a>.
+        <a href="mailto:eos.cosmosns@gmail.com">Cosmology Group at SNS</a>
+.
         All Rights Reserved.
         Developed by&nbsp;
-        <a href="https://github.com/sirfoga">Stefano Fogarollo</a>.
-        For any questions send email to<span>&nbsp;</span>
-          <a href="mailto:eos.cosmosns[at]gmail.com">eos.cosmosns[at]gmail.com</a>
+        <a href="https://github.com/sirfoga">Stefano Fogarollo</a>
+.
+        For any questions send email to
+        <span>&nbsp;</span>
+        <a href="mailto:eos.cosmosns[at]gmail.com">eos.cosmosns[at]gmail.com</a>
       </div>
     );
 
@@ -92,8 +95,18 @@ class App extends React.Component {
                 </div>
                 )
                 }
-                <PrivateRoute exact path="/jupyter" component={JupyterPage} />
-                <PrivateRoute exact path="/download" component={DownloadPage} />
+                <PrivateRoute
+                  exact
+                  path="/jupyter"
+                  roles={[Role.User, Role.Admin]} // has to be logged-in
+                  component={JupyterPage}
+                />
+                <PrivateRoute
+                  exact
+                  path="/download"
+                  roles={[Role.User, Role.Admin]} // has to be logged-in
+                  component={DownloadPage}
+                />
                 <PrivateRoute exact path="/" component={HomePage} />
 
                 <PrivateRoute
