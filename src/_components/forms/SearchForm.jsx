@@ -14,14 +14,14 @@ class SearchForm extends React.Component {
     const { onSubmit, isSubmitting } = props;
 
     this.state = {
-      alphaEsc: [-0.5],
-      alphaStar: [0.5],
-      fEsc10: [0.1],
-      fStar10: [0.05],
+      alphaEsc: [-0.65, -0.35],
+      alphaStar: [0.35, 0.65],
+      fEsc10: [0.05, 0.15],
+      fStar10: [0.05, 0.1],
       lX: [39, 41],
-      mTurn: [5], // * 10 ^ 8
-      tStar: [0.5],
-      sigma8: [0.80, 0.81],
+      mTurn: [4, 6], // * 10 ^ 8
+      tStar: [0.35, 0.65],
+      sigma8: [0.79, 0.81],
       xRaySpecIndex: [0.1, 1.5], // todo
       files: [false, false],
       isSubmitting,
@@ -84,7 +84,7 @@ class SearchForm extends React.Component {
         </h3>
         <Link2Paper />
         <div className="sameRow">
-          <ParameterInputContainer
+          <RangeParameterInputContainer
             sliderDomain={[-1.0, 0.5]}
             sliderValues={alphaEsc}
             label={'\\alpha_{esc}'}
@@ -96,7 +96,7 @@ class SearchForm extends React.Component {
               this.handleChange('alphaEsc', x);
             }}
           />
-          <ParameterInputContainer
+          <RangeParameterInputContainer
             sliderDomain={[-0.5, 1.0]}
             sliderValues={alphaStar}
             label={'\\alpha_{*}'}
@@ -106,7 +106,7 @@ class SearchForm extends React.Component {
               this.handleChange('alphaStar', x);
             }}
           />
-          <ParameterInputContainer
+          <RangeParameterInputContainer
             sliderDomain={[0.001, 1]}
             sliderValues={fEsc10}
             label={'f_{esc,10}'}
@@ -117,7 +117,7 @@ class SearchForm extends React.Component {
           />
         </div>
         <div className="sameRow">
-          <ParameterInputContainer
+          <RangeParameterInputContainer
             sliderDomain={[0.001, 1]}
             sliderValues={fStar10}
             label={'f_{*,10}'}
@@ -136,7 +136,7 @@ class SearchForm extends React.Component {
               this.handleChange('lX', x);
             }}
           />
-          <ParameterInputContainer
+          <RangeParameterInputContainer
             sliderDomain={[1, 100]}
             sliderValues={mTurn}
             label={'M_{turn}'}
@@ -147,7 +147,7 @@ class SearchForm extends React.Component {
           />
         </div>
         <div className="sameRow">
-          <ParameterInputContainer
+          <RangeParameterInputContainer
             sliderDomain={[0, 1]}
             sliderValues={tStar}
             label={'t_{*}'}
