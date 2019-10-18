@@ -18,10 +18,10 @@ class SearchForm extends React.Component {
       alphaStar: [0.5],
       fEsc10: [0.1],
       fStar10: [0.05],
-      lX: [39, 41], // todo
+      lX: [39, 41],
       mTurn: [5], // * 10 ^ 8
       tStar: [0.5],
-      sigma8: [200, 300], // todo
+      sigma8: [0.80, 0.81],
       xRaySpecIndex: [0.1, 1.5], // todo
       files: [false, false],
       isSubmitting,
@@ -88,7 +88,10 @@ class SearchForm extends React.Component {
             sliderDomain={[-1.0, 0.5]}
             sliderValues={alphaEsc}
             label={'\\alpha_{esc}'}
-            description="The power law scaling with halo mass"
+            description="The power law scaling with halo mass.<br />
+            We take a fiducial value of −0.5.<br />
+            We expect it to be negative as SNe can more easily evacuate<br />
+            low column density channels from shallower potential wells"
             onChange={(x) => {
               this.handleChange('alphaEsc', x);
             }}
@@ -97,7 +100,8 @@ class SearchForm extends React.Component {
             sliderDomain={[-0.5, 1.0]}
             sliderValues={alphaStar}
             label={'\\alpha_{*}'}
-            description="The power-law scaling of f* with halo mass"
+            description="The power-law scaling of f* with halo mass.<br />
+            When making a mock 21-cm observation, we take a fiducial value 0.5"
             onChange={(x) => {
               this.handleChange('alphaStar', x);
             }}
@@ -123,10 +127,11 @@ class SearchForm extends React.Component {
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[38, 42]} // todo
+            sliderDomain={[38, 42]}
             sliderValues={lX}
             label="lX"
-            description="The normalization of the soft-band X-ray luminosity per unit star formation, computed over the band E0 – 2 keV"
+            description="The normalization of the soft-band X-ray luminosity per unit star formation,<br />
+            computed over the band E0 – 2 keV"
             onChange={(x) => {
               this.handleChange('lX', x);
             }}
@@ -152,10 +157,10 @@ class SearchForm extends React.Component {
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[200, 300]} // todo
+            sliderDomain={[0.78, 0.84]}
             sliderValues={sigma8}
             label={'\\sigma_{8}'}
-            description="..."
+            description="Standard deviation of the z = 0 linear matter field averaged over spheres of radius 8Mpc/h"
             onChange={(x) => {
               this.handleChange('sigma8', x);
             }}

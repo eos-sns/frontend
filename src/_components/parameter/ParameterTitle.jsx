@@ -15,7 +15,7 @@ class ParameterTitle extends React.Component {
         <h4 data-tip={description} data-multiline>
           <TeX label={label} />
         </h4>
-        <ReactTooltip place="top" type="dark" effect="float" />
+        <ReactTooltip place="top" type="dark" effect="float" multiline={true} />
       </div>
     );
   }
