@@ -1,6 +1,7 @@
 import React from 'react';
 import { Checkbox } from './Checkbox';
 import { TeX } from '@/_components/labels';
+import {ParameterTitle} from "@/_components/parameter/ParameterTitle";
 
 /**
  * Converts list of labels to objects with name, key, label
@@ -30,7 +31,7 @@ class CheckboxContainer extends React.Component {
     super(props);
 
     const {
-      title, labels, onChange, checks,
+      title, labels, descriptions, onChange, checks,
     } = props;
 
     const checkboxes = labels.map(label2Box);
@@ -39,6 +40,7 @@ class CheckboxContainer extends React.Component {
     for (let i = 0; i < checkboxes.length; i++) {
       const item = checkboxes[i].name;
       checkedItems[item] = checks[i];
+      checkboxes[i].description = descriptions[i];
     }
 
     this.state = {
@@ -77,8 +79,14 @@ class CheckboxContainer extends React.Component {
                   name={item.name}
                   checked={checkedItems[item.name]}
                   onChange={this.handleChange}
-                />&nbsp;
-                <label htmlFor={item.name}><TeX label={item.label} /></label>
+                />
+&nbsp;
+                <label htmlFor={item.name}>
+                  <ParameterTitle
+                    label={item.label}
+                    description={item.description}
+                  />
+                </label>
               </div>
             ))
           }
