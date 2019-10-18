@@ -4,6 +4,7 @@ import {
   RangeParameterInputContainer,
 } from '@/_components/parameter';
 import { CheckboxContainer } from '@/_components/checkbox';
+import {NumbersLabel} from "@/_components/labels";
 
 // todo validationSchema
 class SearchForm extends React.Component {
@@ -81,7 +82,7 @@ class SearchForm extends React.Component {
         <h3>
           {title}
         </h3>
-        <Link2Paper/>
+        <Link2Paper />
         <div className="sameRow">
           <ParameterInputContainer
             sliderDomain={[-1.0, 0.5]}
@@ -172,16 +173,30 @@ class SearchForm extends React.Component {
       </div>
     );
 
-    // todo labels
+    const EstimationLabels = () => (
+        <div>
+            <NumbersLabel
+                label="Estimated number of simulations"
+                number={45}
+            />
+            <NumbersLabel
+                label="Estimated download size (Mb)"
+                number={4.9}
+            />
+        </div>
+    );
+
     const FilesCheckboxes = () => (
-      <CheckboxContainer
-        title="Download files"
-        labels={[
-          'coeval_kZ', 'coeval_PS_z',
-        ]}
-        checks={files}
-        onChange={this.handleCheckboxChange}
-      />
+      <div>
+          <CheckboxContainer
+          title="Download files"
+          labels={[
+            'coeval_kZ', 'coeval_PS_z',
+          ]}
+          checks={files}
+          onChange={this.handleCheckboxChange}
+        />
+      </div>
     );
 
     const SubmitButton = () => (
@@ -197,6 +212,9 @@ class SearchForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <ParameterInputs />
+          {<br />}
+          <EstimationLabels/>
+          {<br />}
         <FilesCheckboxes />
         {<br />}
         <SubmitButton />
