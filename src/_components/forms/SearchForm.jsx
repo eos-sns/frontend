@@ -126,7 +126,7 @@ class SearchForm extends React.Component {
             sliderDomain={[38, 42]} // todo
             sliderValues={lX}
             label="lX"
-            description="..."
+            description="The normalization of the soft-band X-ray luminosity per unit star formation, computed over the band E0 – 2 keV"
             onChange={(x) => {
               this.handleChange('lX', x);
             }}
