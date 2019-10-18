@@ -6,13 +6,13 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, 'src/'),
-    }
+    },
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.css$/i,
@@ -25,18 +25,18 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'fonts/',
+            },
+          },
+        ],
+      },
+    ],
   },
   watch: true,
   plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html'
+    template: './src/index.html',
   })],
   devServer: {
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+  },
 };

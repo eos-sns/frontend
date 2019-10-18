@@ -3,38 +3,32 @@ import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik';
 import * as Yup from 'yup';
-import Link from 'react-router-dom/es/Link';
-import { userModel, userService } from '@/_services';
+import { userService } from '@/_services';
 
-class LoginPage extends React.Component {
+class ForgotPasswordPage extends React.Component {
   constructor(props) {
     super(props);
-
-    // redirect to home if already logged in
-    if (userModel.currentUserValue) {
-      this.props.history.push('/');
-    }
   }
 
   render() {
-    const LoginForm = () => (
-      <div>
-        <h2>Login</h2>
+    const ForgotPasswordForm = () => (
+      <div className="col-md-6 col-md-offset-3">
+        <h2>Reset password</h2>
         <Formik
           initialValues={{
-            username: '',
-            password: '',
+            email: '',
           }}
           validationSchema={Yup.object().shape({
-            username: Yup.string().required('Username is required'),
-            password: Yup.string().required('Password is required'),
+            email: Yup.string().required('Email is required'),
           })}
-          onSubmit={({ username, password }, { setStatus, setSubmitting }) => {
+          onSubmit={({
+            email,
+          }, { setStatus, setSubmitting }) => {
             setStatus();
-            userService.login(username, password).then(
+            userService.resetPassword(email).then(
               () => {
-                const { from } = this.props.location.state || { from: { pathname: '/' } };
-                this.props.history.push(from);
+                setSubmitting(false);
+                window.location.reload();
               },
               (error) => {
                 setSubmitting(false);
@@ -47,27 +41,14 @@ class LoginPage extends React.Component {
           }) => (
             <Form>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="email">Email</label>
                 <Field
-                  name="username"
+                  name="email"
                   type="text"
-                  className={`form-control${errors.username && touched.username ? ' is-invalid' : ''}`}
+                  className={`form-control${errors.email && touched.email ? ' is-invalid' : ''}`}
                 />
                 <ErrorMessage
-                  name="username"
-                  component="div"
-                  className="invalid-feedback"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Field
-                  name="password"
-                  type="password"
-                  className={`form-control${errors.password && touched.password ? ' is-invalid' : ''}`}
-                />
-                <ErrorMessage
-                  name="password"
+                  name="email"
                   component="div"
                   className="invalid-feedback"
                 />
@@ -78,7 +59,7 @@ class LoginPage extends React.Component {
                   className="btn btn-primary"
                   disabled={isSubmitting}
                 >
-                  Login
+                  Submit
                 </button>
                 {isSubmitting
                 && (
@@ -97,30 +78,12 @@ class LoginPage extends React.Component {
       </div>
     );
 
-    const RegisterOption = () => (
-      <div>
-        New user?
-        {' '}
-        <Link to="/register">Register</Link>
-      </div>
-    );
-
-    const ForgotPasswordOption = () => (
-      <div>
-        Forgot password?
-        {' '}
-        <Link to="/forgotPassword">Ask for a new one</Link>
-      </div>
-    );
-
     return (
       <div>
-        <LoginForm />
-        <RegisterOption />
-        <ForgotPasswordOption />
+        <ForgotPasswordForm />
       </div>
     );
   }
 }
 
-export { LoginPage };
+export { ForgotPasswordPage };

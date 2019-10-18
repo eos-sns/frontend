@@ -15,7 +15,8 @@ import { AdminPage } from '@/AdminPage';
 
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
-import { UserPage } from "../UserPage";
+import { UserPage } from '../UserPage';
+import { ForgotPasswordPage } from '../ForgotPasswordPage';
 
 class App extends React.Component {
   static logout() {
@@ -124,6 +125,7 @@ class App extends React.Component {
                 />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
+                <Route path="/forgotPassword" component={ForgotPasswordPage} />
               </div>
             </div>
           </div>

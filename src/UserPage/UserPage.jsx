@@ -37,13 +37,14 @@ class UserPage extends React.Component {
             lastName: userFromApi.lastName,
             username: userFromApi.username,
             email: userFromApi.email,
+            password: ''
           }}
           validationSchema={Yup.object().shape({
             username: Yup.string().required('Username is required'),
             email: Yup.string().required('Email is required'),
           })}
           onSubmit={({
-            firstName, lastName, username, email,
+            firstName, lastName, username, email, password,
           }, { setStatus, setSubmitting }) => {
             setStatus();
             const newUser = {
@@ -51,6 +52,7 @@ class UserPage extends React.Component {
               lastName,
               username,
               email,
+              password,
             };
             userService.update(currentUser._id, newUser).then(
               () => {
@@ -115,6 +117,20 @@ class UserPage extends React.Component {
                 />
                 <ErrorMessage
                   name="email"
+                  component="div"
+                  className="invalid-feedback"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <Field
+                  name="password"
+                  type="password"
+                  placeholder="Type for new password"
+                  className={`form-control${errors.password && touched.password ? ' is-invalid' : ''}`}
+                />
+                <ErrorMessage
+                  name="password"
                   component="div"
                   className="invalid-feedback"
                 />

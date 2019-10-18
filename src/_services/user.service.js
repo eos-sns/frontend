@@ -11,6 +11,7 @@ export const userService = {
   getAll,
   getById,
   update,
+  resetPassword,
 };
 
 function login(username, password) {
@@ -64,4 +65,17 @@ function update(userId, user) {
   };
 
   return fetch(`${config.usersApiUrl}/${userId}`, requestOptions).then(handleResponse);
+}
+
+function resetPassword(userEmail) {
+  const user = {
+    'email': userEmail
+  };
+  const requestOptions = {
+    method: 'POST',
+    headers: headers._getAuthHeaders(),
+    body: JSON.stringify(user),
+  };
+
+  return fetch(`${config.resetPasswordApiUrl}`, requestOptions).then(handleResponse);
 }
