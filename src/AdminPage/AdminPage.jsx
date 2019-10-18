@@ -33,35 +33,13 @@ class AdminPage extends React.Component {
       Header: 'Role',
       accessor: 'role',
     }, {
-      Header: 'Verified ?',
-      accessor: 'verified',
-      Cell: x => (
-        <Checkbox
-          className="centered" // todo
-          size={2}
-          tickSize={3}
-          checked={this.state.users[x.index].verified}
-        />
-      ),
-    }, {
-      Header: 'Granted ?',
-      accessor: 'granted',
+      Header: 'Authorized ?',
+      accessor: 'authorized',
       Cell: x => (
         <Switch
           className="centered" // todo
-          onChange={this.toggleGrantedSwitch.bind(this, x.index)}
-          checked={this.state.users[x.index].granted}
-          disabled={this.state.submitting}
-        />
-      ),
-    }, {
-      Header: 'Blocked ?',
-      accessor: 'blocked',
-      Cell: x => (
-        <Switch
-          className="centered" // todo
-          onChange={this.toggleBlockedSwitch.bind(this, x.index)}
-          checked={this.state.users[x.index].blocked}
+          onChange={this.toggleAuthorizedSwitch.bind(this, x.index)}
+          checked={this.state.users[x.index].authorized}
           disabled={this.state.submitting}
         />
       ),
@@ -76,12 +54,8 @@ class AdminPage extends React.Component {
     return userService.update(user);
   }
 
-  toggleGrantedSwitch(switchUser, newStatus) {
-    this.setUserProperty(switchUser, 'granted', newStatus);
-  }
-
-  toggleBlockedSwitch(switchUser, newStatus) {
-    this.setUserProperty(switchUser, 'blocked', newStatus);
+  toggleAuthorizedSwitch(switchUser, newStatus) {
+    this.setUserProperty(switchUser, 'authorized', newStatus);
   }
 
   setUserProperty(userIndex, property, value) {

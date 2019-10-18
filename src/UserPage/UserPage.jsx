@@ -168,7 +168,7 @@ class UserPage extends React.Component {
 
     return (
       <div>
-        {userFromApi ? (
+        {userFromApi && userFromApi.authorized ? (
           <EditDetailsForm />
         ) : (
           <NotGrantedComponent />

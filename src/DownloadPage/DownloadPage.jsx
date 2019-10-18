@@ -96,7 +96,7 @@ class DownloadPage extends React.Component {
           <div className="alert alert-success">
             <p>
               {status.msg}
-              . An email has been sent
+              An email has been sent
               to
               {' '}
               <strong>{status.email}</strong>
@@ -118,7 +118,7 @@ class DownloadPage extends React.Component {
 
     return (
       <div>
-        {userFromApi && !userFromApi.blocked
+        {userFromApi && userFromApi.authorized
           ? (
             <SearchForm
               title="Parameters"

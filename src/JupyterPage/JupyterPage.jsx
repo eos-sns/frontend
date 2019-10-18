@@ -32,8 +32,7 @@ class JupyterPage extends React.Component {
 
     const NotGrantedComponent = () => (
       <h2>
-Sorry, you've NOT been granted
-      JupyterHub access
+        Sorry, you've NOT been granted JupyterHub access
       </h2>
     );
 
@@ -41,7 +40,7 @@ Sorry, you've NOT been granted
       <div>
         <h1>JupyterNotebook</h1>
         <div>
-          {userFromApi && userFromApi.granted
+          {userFromApi && userFromApi.authorized
             ? (<JupyterFrame />) : (<NotGrantedComponent />)
           }
         </div>
