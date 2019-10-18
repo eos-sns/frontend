@@ -56,12 +56,12 @@ function getById(id) {
   return fetch(`${config.usersApiUrl}/${id}`, requestOptions).then(handleResponse);
 }
 
-function update(user) {
+function update(userId, user) {
   const requestOptions = {
     method: 'PUT',
     headers: headers._getAuthHeaders(),
     body: JSON.stringify(user),
   };
 
-  return fetch(`${config.usersApiUrl}/${user.id}`, requestOptions).then(handleResponse);
+  return fetch(`${config.usersApiUrl}/${userId}`, requestOptions).then(handleResponse);
 }

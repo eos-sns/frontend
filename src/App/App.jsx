@@ -15,6 +15,7 @@ import { AdminPage } from '@/AdminPage';
 
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
+import { UserPage } from "../UserPage";
 
 class App extends React.Component {
   static logout() {
@@ -71,6 +72,7 @@ class App extends React.Component {
               <Link to="/" className="nav-item nav-link nav-highlight">Home</Link>
               <Link to="/search" className="nav-item nav-link nav-highlight">Download</Link>
               <Link to="/jupyter" className="nav-item nav-link nav-highlight">Jupyter</Link>
+              <Link to="/me" className="nav-item nav-link nav-highlight">Me</Link>
               {isAdmin
               && <Link to="/admin" className="nav-item nav-link nav-highlight">Admin</Link>}
               <a
@@ -106,6 +108,12 @@ class App extends React.Component {
                   path="/search"
                   roles={[Role.User, Role.Admin]} // has to be logged-in
                   component={DownloadPage}
+                />
+                <PrivateRoute
+                  exact
+                  path="/me"
+                  roles={[Role.User, Role.Admin]} // has to be logged-in
+                  component={UserPage}
                 />
                 <PrivateRoute exact path="/" component={HomePage} />
 
