@@ -67,7 +67,6 @@ class DownloadPage extends React.Component {
   estimateDownloadSize = (dataToSubmit) => {
     searchService.getEstimate(dataToSubmit).then(
       (downloadSize) => {
-        console.log(downloadSize);
         this.setState({
           downloadSize,
         })
