@@ -13,6 +13,7 @@ export const userService = {
   update,
   resetPassword,
   authorizeUser,
+  deleteUser,
 };
 
 function login(username, password) {
@@ -65,6 +66,15 @@ function update(userId, user) {
     body: JSON.stringify(user),
   };
 
+
+  return fetch(`${config.usersApiUrl}/${userId}`, requestOptions).then(handleResponse);
+}
+
+function deleteUser(userId) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: headers._getAuthHeaders()
+  };
 
   return fetch(`${config.usersApiUrl}/${userId}`, requestOptions).then(handleResponse);
 }
