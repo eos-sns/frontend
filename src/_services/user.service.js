@@ -12,6 +12,7 @@ export const userService = {
   getById,
   update,
   resetPassword,
+  authorizeUser,
 };
 
 function login(username, password) {
@@ -67,9 +68,13 @@ function update(userId, user) {
   return fetch(`${config.usersApiUrl}/${userId}`, requestOptions).then(handleResponse);
 }
 
+function authorizeUser(userId) {
+  return update(userId, { authorized: true });
+}
+
 function resetPassword(userEmail) {
   const user = {
-    'email': userEmail
+    email: userEmail,
   };
   const requestOptions = {
     method: 'POST',

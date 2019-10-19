@@ -1,22 +1,25 @@
 import React from 'react';
-import { Link, Route, Router } from 'react-router-dom';
+import {
+  Link, Route, Router, Switch,
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { history, Role } from '../_helpers';
+import { history, Role } from '@/_helpers';
 import { userModel, userService } from '@/_services';
-import { alertActions } from '../_actions';
-import { PrivateRoute } from '../_components';
+import { alertActions } from '@/_actions';
+import { PrivateRoute } from '@/_components';
 
-import { HomePage } from '../HomePage';
-import { DownloadPage } from '../DownloadPage';
-import { JupyterPage } from '../JupyterPage';
+import { HomePage } from '@/HomePage';
+import { DownloadPage } from '@/DownloadPage';
+import { JupyterPage } from '@/JupyterPage';
 
 import { AdminPage } from '@/AdminPage';
+import { AuthorizeUserPage } from '@/AuthorizeUserPage';
 
-import { LoginPage } from '../LoginPage';
-import { RegisterPage } from '../RegisterPage';
-import { UserPage } from '../UserPage';
-import { ForgotPasswordPage } from '../ForgotPasswordPage';
+import { LoginPage } from '@/LoginPage';
+import { RegisterPage } from '@/RegisterPage';
+import { UserPage } from '@/UserPage';
+import { ForgotPasswordPage } from '@/ForgotPasswordPage';
 
 class App extends React.Component {
   static logout() {
@@ -98,34 +101,41 @@ class App extends React.Component {
                 </div>
                 )
                 }
-                <PrivateRoute
-                  exact
-                  path="/jupyter"
-                  roles={[Role.User, Role.Admin]} // has to be logged-in
-                  component={JupyterPage}
-                />
-                <PrivateRoute
-                  exact
-                  path="/search"
-                  roles={[Role.User, Role.Admin]} // has to be logged-in
-                  component={DownloadPage}
-                />
-                <PrivateRoute
-                  exact
-                  path="/me"
-                  roles={[Role.User, Role.Admin]} // has to be logged-in
-                  component={UserPage}
-                />
-                <PrivateRoute exact path="/" component={HomePage} />
 
-                <PrivateRoute
-                  path="/admin"
-                  roles={[Role.Admin]}
-                  component={AdminPage}
-                />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
-                <Route path="/forgotPassword" component={ForgotPasswordPage} />
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/jupyter"
+                    roles={[Role.User, Role.Admin]} // has to be logged-in
+                    component={JupyterPage}
+                  />
+                  <PrivateRoute
+                    exact
+                    path="/search"
+                    roles={[Role.User, Role.Admin]} // has to be logged-in
+                    component={DownloadPage}
+                  />
+                  <PrivateRoute
+                    exact
+                    path="/me"
+                    roles={[Role.User, Role.Admin]} // has to be logged-in
+                    component={UserPage}
+                  />
+                  <PrivateRoute
+                    path="/admin"
+                    roles={[Role.Admin]}
+                    component={AdminPage}
+                  />
+                  <PrivateRoute
+                    path="/authorize"
+                    component={AuthorizeUserPage}
+                    roles={[Role.Admin]}
+                  />
+                  <PrivateRoute exact path="/" component={HomePage} />
+                  <Route path="/login" component={LoginPage} />
+                  <Route path="/register" component={RegisterPage} />
+                  <Route path="/forgotPassword" component={ForgotPasswordPage} />
+                </Switch>
               </div>
             </div>
           </div>

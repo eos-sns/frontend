@@ -11,6 +11,7 @@ module.exports = (env) => {
     config: JSON.stringify({
       apiUrl: API_URL,
       usersApiUrl: `${API_URL}/users`,
+      usersAuthorizeApiUrl: `${API_URL}/users/authorize`,
       searchApiUrl: `${API_URL}/search`,
       jupyterUrl: 'http://localhost:8888',
       resetPasswordApiUrl: `${API_URL}/users/resetPassword`,
