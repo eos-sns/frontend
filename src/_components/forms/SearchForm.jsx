@@ -4,14 +4,12 @@ import {
   RangeParameterInputContainer,
 } from '@/_components/parameter';
 import { CheckboxContainer } from '@/_components/checkbox';
-import { NumbersLabel } from '@/_components/labels';
 
-class SearchForm extends React.Component {
+class SearchForm extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const { onSubmit, isSubmitting } = props;
-
+    const { onSubmit, onChange, isSubmitting } = props;
     this.state = {
       alphaEsc: [-0.65, -0.35],
       alphaStar: [0.35, 0.65],
@@ -21,9 +19,10 @@ class SearchForm extends React.Component {
       mTurn: [4, 6], // * 10 ^ 8
       tStar: [0.35, 0.65],
       sigma8: [0.79, 0.81],
-      xRaySpecIndex: [0.1, 1.5], // todo
+      xRaySpecIndex: [0.1, 1.5],
       files: [false, false],
       isSubmitting,
+      onChange,
       onSubmit,
     };
 
@@ -32,16 +31,19 @@ class SearchForm extends React.Component {
 
   handleChange = (key, val) => {
     this.state[key] = val;
+
+    const { onChange } = this.state;
+    onChange(this.getDataToSubmit());
   };
 
   handleCheckboxChange = (data) => {
     this.state.files = data;
   };
 
-  handleSubmit(event) {
+  getDataToSubmit = () => {
     const {
       alphaEsc, alphaStar, fEsc10, fStar10, lX, mTurn, tStar, sigma8,
-      xRaySpecIndex, files, onSubmit,
+      xRaySpecIndex, files,
     } = this.state; // get data
     const params = {
       alphaEsc,
@@ -54,11 +56,16 @@ class SearchForm extends React.Component {
       sigma8,
       xRaySpecIndex,
     };
-    const dataToSubmit = {
+    return {
       params, files,
     }; // format data
+  };
+
+  handleSubmit(event) {
+    const { onSubmit } = this.state;
+
     event.preventDefault(); // DO NOT RELOAD page
-    onSubmit(dataToSubmit); // submit data
+    onSubmit(this.getDataToSubmit()); // submit data
   }
 
   render() {
@@ -177,19 +184,6 @@ class SearchForm extends React.Component {
       </div>
     );
 
-    const EstimationLabels = () => (
-      <div>
-        <NumbersLabel
-          label="Estimated number of simulations"
-          number={45}
-        />
-        <NumbersLabel
-          label="Estimated download size (Mb)"
-          number={4.9}
-        />
-      </div>
-    );
-
     const FilesCheckboxes = () => (
       <div>
         <CheckboxContainer
@@ -198,7 +192,7 @@ class SearchForm extends React.Component {
             'coeval_kZ', 'coeval_PS_z',
           ]}
           descriptions={[
-              'kZ', 'PS_z'  // todo
+            'kZ', 'PS_z', // todo
           ]}
           checks={files}
           onChange={this.handleCheckboxChange}
@@ -219,8 +213,6 @@ class SearchForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <ParameterInputs />
-        {<br />}
-        <EstimationLabels />
         {<br />}
         <FilesCheckboxes />
         {<br />}

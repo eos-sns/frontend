@@ -3,6 +3,7 @@ import React from 'react';
 import { userModel, userService } from '@/_services';
 import { SearchForm } from '@/_components';
 import { searchService } from '@/_services/search.service';
+import { NumbersLabel } from '@/_components/labels';
 
 class DownloadPage extends React.Component {
   setSubmitting = (isSubmitting) => {
@@ -63,14 +64,37 @@ class DownloadPage extends React.Component {
     );
   };
 
+  estimateDownloadSize = (dataToSubmit) => {
+    searchService.getEstimate(dataToSubmit).then(
+      (downloadSize) => {
+        console.log(downloadSize);
+        this.setState({
+          downloadSize,
+        })
+      },
+      (err) => {
+        this.setStatus({
+          err: `Error: cannot get estimate of download size. ${err}`,
+          email: null,
+        });
+      },
+    );
+  };
+
   constructor(props) {
     super(props);
+
+    const downloadSize = {
+      nSimulations: 0,
+      mbSize: 0,
+    };
 
     this.state = {
       isSubmitting: false,
       status: {},
       currentUser: userModel.currentUserValue,
       userFromApi: null,
+      downloadSize,
     };
   }
 
@@ -85,7 +109,21 @@ class DownloadPage extends React.Component {
   }
 
   render() {
-    const { status, isSubmitting, userFromApi } = this.state;
+    const {
+      status, isSubmitting, userFromApi, downloadSize,
+    } = this.state;
+    const EstimationLabels = () => (
+      <div>
+        <NumbersLabel
+          label="Estimated number of simulations"
+          number={downloadSize.nSimulations}
+        />
+        <NumbersLabel
+          label="Estimated download size (Mb)"
+          number={downloadSize.mbSize}
+        />
+      </div>
+    );
     const StatusMessage = () => (
       <div>
         {status && status.err
@@ -120,11 +158,16 @@ class DownloadPage extends React.Component {
       <div>
         {userFromApi && userFromApi.authorized
           ? (
-            <SearchForm
-              title="Parameters"
-              onSubmit={this.onSubmit}
-              isSubmitting={isSubmitting}
-            />
+            <div>
+              <SearchForm
+                title="Parameters"
+                onChange={this.estimateDownloadSize}
+                onSubmit={this.onSubmit}
+                isSubmitting={isSubmitting}
+              />
+              {<br />}
+              <EstimationLabels />
+            </div>
           ) : (<NotGrantedComponent />)
           }
         {<br />}
