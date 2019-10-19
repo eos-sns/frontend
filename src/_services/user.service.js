@@ -65,6 +65,7 @@ function update(userId, user) {
     body: JSON.stringify(user),
   };
 
+
   return fetch(`${config.usersApiUrl}/${userId}`, requestOptions).then(handleResponse);
 }
 

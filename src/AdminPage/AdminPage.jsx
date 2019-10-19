@@ -2,7 +2,6 @@ import React from 'react';
 
 import Switch from 'react-switch';
 import ReactTable from 'react-table';
-import Checkbox from 'react-simple-checkbox';
 import { userService } from '@/_services';
 
 class AdminPage extends React.Component {
@@ -51,7 +50,7 @@ class AdminPage extends React.Component {
       submitting: true,
     });
 
-    return userService.update(user);
+    return userService.update(user.id, user);
   }
 
   toggleAuthorizedSwitch(switchUser, newStatus) {
@@ -65,6 +64,7 @@ class AdminPage extends React.Component {
     user[property] = value; // set
 
     this.updateBackendUser(user)
+      .then(() => console.log('wow'))
       .catch((x) => {
         user[property] = oldProperty; // undo-set
         alert(x);
