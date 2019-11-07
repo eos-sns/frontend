@@ -13,7 +13,7 @@ class HomePage extends React.Component {
         <div>
           Go to the
           {' '}
-          <Link to="/download">download form</Link>
+          <Link to="/search">download form</Link>
           {' '}
           or to your
           {' '}
