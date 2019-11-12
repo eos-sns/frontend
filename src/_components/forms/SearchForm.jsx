@@ -20,7 +20,7 @@ class SearchForm extends React.PureComponent {
       tStar: [0.35, 0.65],
       sigma8: [0.79, 0.81],
       xRaySpecIndex: [0.1, 1.5],
-      files: [false, false],
+      files: [false, false, false, false, false, false, false],
       isSubmitting,
       onChange,
       onSubmit,
@@ -189,10 +189,10 @@ class SearchForm extends React.PureComponent {
         <CheckboxContainer
           title="Download files"
           labels={[
-            'coeval_kZ', 'coeval_PS_z',
+            '\\text{lightcone}', '\\text{density lightcone}', '\\text{luminosity function}', '\\text{global signal}', '\\text{neutral function}', '\\text{co-eval}_{PS}', '\\text{lightcone}_{PS}',
           ]}
           descriptions={[
-            'kZ', 'PS_z', // todo
+            'description for lightcone', 'description for density lightcone', 'description for luminosity function', 'global signal', 'description for neutral function', 'description for co-eval PS', 'description for lightcone PS',  // todo
           ]}
           checks={files}
           onChange={this.handleCheckboxChange}

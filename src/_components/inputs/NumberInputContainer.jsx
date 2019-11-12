@@ -19,7 +19,6 @@ class NumberInputContainer extends React.Component {
       label, minValue, maxValue, value, onChange,
     } = this.state;
 
-    // todo inline
     return (
       <React.Fragment>
         <div className="sameRow">

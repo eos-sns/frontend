@@ -11,11 +11,4 @@ const ParameterInput = ({ _id, label, defaultValue }) => (
   </div>
 );
 
-/* todo what are these ???
-ParameterInput.propTypes = {
-  type: PropTypes.string,
-  _id: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-}; */
-
 export { ParameterInput };

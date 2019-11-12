@@ -71,7 +71,7 @@ class CheckboxContainer extends React.Component {
     return (
       <React.Fragment>
         <h3>{title}</h3>
-        <div className="sameRow">
+        <div>
           {
             checkboxes.map(item => (
               <div key={item.key}>
