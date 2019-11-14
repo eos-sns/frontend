@@ -19,7 +19,7 @@ class SearchForm extends React.PureComponent {
       mTurn: [4, 6], // * 10 ^ 8
       tStar: [0.35, 0.65],
       sigma8: [0.79, 0.81],
-      xRaySpecIndex: [0.1, 1.5],
+      xRaySpecIndex: [0.5, 1.0],
       files: [false, false, false, false, false, false, false],
       isSubmitting,
       onChange,
@@ -172,7 +172,7 @@ class SearchForm extends React.PureComponent {
             }}
           />
           <RangeParameterInputContainer
-            sliderDomain={[0.1, 1.5]} // todo
+            sliderDomain={[0, 1.5]}
             sliderValues={xRaySpecIndex}
             label="xRaySpecIndex"
             description="..."
