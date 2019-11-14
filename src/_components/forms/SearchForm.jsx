@@ -192,7 +192,15 @@ class SearchForm extends React.PureComponent {
             '\\text{lightcone}', '\\text{density lightcone}', '\\text{luminosity function}', '\\text{global signal}', '\\text{neutral function}', '\\text{co-eval}_{PS}', '\\text{lightcone}_{PS}',
           ]}
           descriptions={[
-            'description for lightcone', 'description for density lightcone', 'description for luminosity function', 'global signal', 'description for neutral function', 'description for co-eval PS', 'description for lightcone PS',  // todo
+            'rectangular cuboid of the 21cm brightness temperature offset from the CMB,<br />'
+            + 'as a function of transverse comoving scales x and y, and comoving line-of-sight distance, z',
+            'rectangular cuboid of the matter density contrast,<br />'
+            + 'as a function of transverse comoving scales x and y, and comoving line-of-sight distance, z',
+            'number density of galaxies as a function of UV magnitude, at various redshifts',
+            'volume average of the 21cm brightness temperature offset from the CMB, as a function of redshift',
+            'volume average of the hydrogen neutral fraction, as a function of redshift',
+            '3D averaged 21cm power spectra, evaluated from outputs at a fixed redshift',
+            '3D averaged 21cm power spectra, evaluated from lightcone segments',
           ]}
           checks={files}
           onChange={this.handleCheckboxChange}
