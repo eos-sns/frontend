@@ -20,7 +20,7 @@ class SearchForm extends React.PureComponent {
       tStar: [0, 1],
       sigma8: [0.78, 0.84],
       xRaySpecIndex: [0, 1.5],
-      files: [false, false, false, false, false, false, false],
+      files: [false, false, false, false, false, false, false, false],
       isSubmitting,
       onChange,
       onSubmit,
@@ -189,7 +189,9 @@ class SearchForm extends React.PureComponent {
         <CheckboxContainer
           title="Download files"
           labels={[
-            '\\text{lightcone}', '\\text{density lightcone}', '\\text{luminosity function}', '\\text{global signal}', '\\text{neutral function}', '\\text{co-eval}_{PS}', '\\text{lightcone}_{PS}',
+            '\\text{lightcone}', '\\text{density lightcone}', '\\text{luminosity function}',
+            '\\text{global signal}', '\\text{neutral function}', '\\text{co-eval}_{PS}', '\\text{lightcone}_{PS}',
+            '\\text{all fields}',
           ]}
           descriptions={[
             'rectangular cuboid of the 21cm brightness temperature offset from the CMB,<br />'
@@ -201,6 +203,7 @@ class SearchForm extends React.PureComponent {
             'volume average of the hydrogen neutral fraction, as a function of redshift',
             '3D averaged 21cm power spectra, evaluated from outputs at a fixed redshift',
             '3D averaged 21cm power spectra, evaluated from lightcone segments',
+            'all previous fields and all others available'
           ]}
           checks={files}
           onChange={this.handleCheckboxChange}
