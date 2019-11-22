@@ -137,9 +137,9 @@ class SearchForm extends React.PureComponent {
           <RangeParameterInputContainer
             sliderDomain={[38, 42]}
             sliderValues={lX}
-            label="lX"
+            label="\frac{L_{X < 2keV}}{SFR}"
             description="The normalization of the soft-band X-ray luminosity per unit star formation,<br />
-            computed over the band E0 – 2 keV. L_X/SFR (<2keV)"
+            computed over the band E0 – 2 keV."
             onChange={(x) => {
               this.handleChange('lX', x);
             }}
@@ -176,7 +176,7 @@ class SearchForm extends React.PureComponent {
           <RangeParameterInputContainer
             sliderDomain={[0, 1.5]}
             sliderValues={xRaySpecIndex}
-            label="xRaySpecIndex"
+            label={'E_0'}
             description="alpha_x - Energy power law index for X-ray emission"
             onChange={(x) => {
               this.handleChange('xRaySpecIndex', x);
@@ -205,7 +205,7 @@ class SearchForm extends React.PureComponent {
             'volume average of the hydrogen neutral fraction, as a function of redshift',
             '3D averaged 21cm power spectra, evaluated from outputs at a fixed redshift',
             '3D averaged 21cm power spectra, evaluated from lightcone segments',
-            'all previous fields and all others available'
+            'all previous fields and all others available',
           ]}
           checks={files}
           onChange={this.handleCheckboxChange}
