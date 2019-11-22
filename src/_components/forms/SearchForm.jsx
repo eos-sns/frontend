@@ -11,15 +11,15 @@ class SearchForm extends React.PureComponent {
 
     const { onSubmit, onChange, isSubmitting } = props;
     this.state = {
-      alphaEsc: [-0.65, -0.35],
-      alphaStar: [0.35, 0.65],
-      fEsc10: [0.05, 0.15],
-      fStar10: [0.05, 0.1],
-      lX: [39, 41],
-      mTurn: [4, 6], // * 10 ^ 8
-      tStar: [0.35, 0.65],
-      sigma8: [0.79, 0.81],
-      xRaySpecIndex: [0.5, 1.0],
+      alphaEsc: [-1.0, 0.5],
+      alphaStar: [-0.5, 1.0],
+      fEsc10: [0.001, 1],
+      fStar10: [0.001, 1],
+      lX: [38, 42],
+      mTurn: [1, 100], // * 10 ^ 8
+      tStar: [0, 1],
+      sigma8: [0.78, 0.84],
+      xRaySpecIndex: [0, 1.5],
       files: [false, false, false, false, false, false, false],
       isSubmitting,
       onChange,
