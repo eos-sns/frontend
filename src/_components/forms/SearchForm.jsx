@@ -99,7 +99,6 @@ class SearchForm extends React.PureComponent {
             sliderValues={alphaEsc}
             label={'\\alpha_{esc}'}
             description="The power law scaling with halo mass.<br />
-            We take a fiducial value of −0.5.<br />
             We expect it to be negative as SNe can more easily evacuate<br />
             low column density channels from shallower potential wells"
             onChange={(x) => {
@@ -110,8 +109,7 @@ class SearchForm extends React.PureComponent {
             sliderDomain={[-0.5, 1.0]}
             sliderValues={alphaStar}
             label={'\\alpha_{*}'}
-            description="The power-law scaling of f* with halo mass.<br />
-            When making a mock 21-cm observation, we take a fiducial value 0.5"
+            description="The power-law scaling of f* with halo mass"
             onChange={(x) => {
               this.handleChange('alphaStar', x);
             }}
@@ -141,7 +139,7 @@ class SearchForm extends React.PureComponent {
             sliderValues={lX}
             label="lX"
             description="The normalization of the soft-band X-ray luminosity per unit star formation,<br />
-            computed over the band E0 – 2 keV"
+            computed over the band E0 – 2 keV. L_X/SFR (<2keV)"
             onChange={(x) => {
               this.handleChange('lX', x);
             }}
@@ -179,7 +177,7 @@ class SearchForm extends React.PureComponent {
             sliderDomain={[0, 1.5]}
             sliderValues={xRaySpecIndex}
             label="xRaySpecIndex"
-            description="..."
+            description="alpha_x - Energy power law index for X-ray emission"
             onChange={(x) => {
               this.handleChange('xRaySpecIndex', x);
             }}
