@@ -29,15 +29,19 @@ class SearchForm extends React.PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = (key, val) => {
-    this.state[key] = val;
-
+  triggerChange = () => {
     const { onChange } = this.state;
     onChange(this.getDataToSubmit());
   };
 
+  handleChange = (key, val) => {
+    this.state[key] = val;
+    this.triggerChange();
+  };
+
   handleCheckboxChange = (data) => {
     this.state.files = data;
+    this.triggerChange();
   };
 
   getDataToSubmit = () => {
