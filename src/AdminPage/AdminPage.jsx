@@ -2,6 +2,8 @@ import React from 'react';
 
 import Switch from 'react-switch';
 import ReactTable from 'react-table';
+import 'react-table/react-table.css'
+
 import { userService } from '@/_services';
 
 class AdminPage extends React.Component {
