@@ -192,7 +192,7 @@ class SearchForm extends React.PureComponent {
           title="Download files"
           labels={[
             '\\text{lightcone}', '\\text{density lightcone}', '\\text{luminosity function}',
-            '\\text{global signal}', '\\text{neutral function}', '\\text{co-eval}_{PS}', '\\text{lightcone}_{PS}',
+            '\\text{global signal}', '\\text{neutral fraction}', '\\text{co-eval}_{PS}', '\\text{lightcone}_{PS}',
             '\\text{all fields}',
           ]}
           descriptions={[
