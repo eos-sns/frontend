@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from 'react-image'
 
 import { userModel, userService } from '@/_services';
 import { SearchForm } from '@/_components';
@@ -69,7 +70,7 @@ class DownloadPage extends React.Component {
       (downloadSize) => {
         this.setState({
           downloadSize,
-        })
+        });
       },
       (err) => {
         this.setStatus({
@@ -145,6 +146,17 @@ class DownloadPage extends React.Component {
         }
       </div>
     );
+    const InstructionAfterDownload = () => (
+      <div>
+        <p>
+          Code sample to extract data from downloaded files:
+        </p>
+        <Img
+          src={['carbon.png', 'Code sample']}
+          width={'100%'}
+        />
+      </div>
+    );
 
     const NotGrantedComponent = () => (
       <h2>
@@ -153,24 +165,29 @@ class DownloadPage extends React.Component {
       </h2>
     );
 
+    const isGranted = userFromApi && userFromApi.authorized;
+
     return (
       <div>
-        {userFromApi && userFromApi.authorized
-          ? (
-            <div>
-              <SearchForm
-                title="Parameters"
-                onChange={this.estimateDownloadSize}
-                onSubmit={this.onSubmit}
-                isSubmitting={isSubmitting}
-              />
-              {<br />}
-              <EstimationLabels />
-            </div>
-          ) : (<NotGrantedComponent />)
-          }
+        {isGranted ? (
+          <div>
+            <SearchForm
+              title="Parameters"
+              onChange={this.estimateDownloadSize}
+              onSubmit={this.onSubmit}
+              isSubmitting={isSubmitting}
+            />
+            <hr />
+            <br />
+            <EstimationLabels />
+            <br />
+            <StatusMessage />
+            <hr />
+            <br />
+            <InstructionAfterDownload />
+          </div>
+        ) : (<NotGrantedComponent />)}
         {<br />}
-        <StatusMessage />
       </div>
     );
   }
