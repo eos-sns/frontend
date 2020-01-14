@@ -1,5 +1,5 @@
 import React from 'react';
-import Img from 'react-image'
+import Img from 'react-image';
 
 import { userModel, userService } from '@/_services';
 import { SearchForm } from '@/_components';
@@ -148,13 +148,22 @@ class DownloadPage extends React.Component {
     );
     const InstructionAfterDownload = () => (
       <div>
-        <p>
-          Code sample to extract data from downloaded files:
-        </p>
-        <Img
-          src={['carbon.png', 'Code sample']}
-          width={'100%'}
-        />
+        <p>To extract data from the downloaded files you  can either</p>
+        <ul>
+          <li>
+download{' '}<a href="sample.py">this</a>
+            {' '}
+python script and use it like{' '}
+<strong>./sample.py -file ...</strong>
+          </li>
+          <li>
+            input the following code into a notebook:<br /><br />
+            <Img
+              src={['carbon.png', 'Code sample']}
+              width="50%"
+            />
+          </li>
+        </ul>
       </div>
     );
 
